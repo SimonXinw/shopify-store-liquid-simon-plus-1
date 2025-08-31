@@ -6,8 +6,8 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -33,7 +33,7 @@
     font-family: Inter, sans-serif;
     font-weight: 700;
     font-style: bold;
-    font-size: {{ 64 | times: 0.9 }}px;
+    font-size: 36px;
     line-height: 100%;
     letter-spacing: 0%;
     color: #000;
@@ -45,14 +45,13 @@
   }
 
   .product-list__button {
-    width: {{ 340 | times: 0.9 }}px;
-    height: {{ 70 | times: 0.9 }}px;
+    padding:10px 20px;
     border-radius: {{ 10 | times: 0.9 }}px;
     border: 1px solid transparent;
     background-color: #EC642C;
     font-family: Inter, sans-serif;
     font-weight: 600;
-    font-size: {{ 30 | times: 0.9 }}px;
+    font-size: 26px;
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
@@ -90,7 +89,7 @@
   .product-list__product-title {
     font-family: Inter, sans-serif;
     font-weight: 700;
-    font-size: {{ 36 | times: 0.9 }}px;
+    font-size: 26px;
     line-height: 100%;
     letter-spacing: 0%;
     color: #000;
@@ -198,7 +197,7 @@
   .product-list__final-price {
     font-family: Inter, sans-serif;
     font-weight: 700;
-    font-size: {{ 36 | times: 0.9 }}px;
+    font-size: 26px;
     line-height: 100%;
     letter-spacing: 0%;
     color: #FF0808;
@@ -303,7 +302,7 @@
     -%}
       <div class="product-list__header">
         {%- if section.settings.title != blank -%}
-          <h2 class="product-list__title">
+          <h2 class="product-list__title homepage-title">
             {{ section.settings.title }}
           </h2>
         {%- endif -%}
@@ -364,7 +363,9 @@
                             <div
                               class="product-list__variant"
                               style="background-color: {{ variant.option1 | downcase }}"
-                            >&nbsp;</div>
+                            >
+                              &nbsp;
+                            </div>
                           {%- endif -%}
                         {%- endfor -%}
                       </div>
@@ -407,7 +408,7 @@
                           {{ product.price | money }}
                         </span>
                       {%- endif -%}
-  
+
                       {%- if product.compare_at_price and product.compare_at_price > product.price -%}
                         <span class="product-list__original-price">
                           {{ product.compare_at_price | money }}
@@ -585,20 +586,20 @@
       "id": "padding_top",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 2,
       "unit": "px",
       "label": "Padding top",
-      "default": 36
+      "default": 64
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 2,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 36
+      "default": 64
     }
   ],
   "blocks": [

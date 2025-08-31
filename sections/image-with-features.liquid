@@ -1,7 +1,13 @@
 {%- style -%}
   #ImageWithFeatures-{{ section.id }} {
     width: 100%;
-    padding: {{ section.settings.section_padding_top | default: 80 }}px 0 {{ section.settings.section_padding_bottom | default: 80 }}px 0;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #ImageWithFeatures-{{ section.id }} {
+      padding: 32px 0 32px 0;
+    }
   }
 
   #ImageWithFeatures-{{ section.id }} .image-with-features-container {
@@ -265,20 +271,20 @@
       "id": "section_padding_top",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 2,
       "unit": "px",
       "label": "顶部内边距",
-      "default": 80
+      "default": 64
     },
     {
       "type": "range",
       "id": "section_padding_bottom",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 2,
       "unit": "px",
       "label": "底部内边距",
-      "default": 80
+      "default": 64
     }
   ],
   "blocks": [

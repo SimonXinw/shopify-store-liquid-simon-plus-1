@@ -1,7 +1,13 @@
 {%- style -%}
   #Logos-{{ section.id }} {
     width: 100%;
-    padding: {{ section.settings.section_padding_top | default: 80 }}px 0 {{ section.settings.section_padding_bottom | default: 80 }}px 0;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #Logos-{{ section.id }} {
+      padding: 32px 0 32px 0;
+    }
   }
 
   #Logos-{{ section.id }} .logos-container {
@@ -13,7 +19,7 @@
     font-family: Inter, sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 64px;
+    font-size: 36px;
     line-height: 100%;
     letter-spacing: 0%;
     color: #000;
@@ -87,7 +93,7 @@
 <div id="Logos-{{ section.id }}" class="section">
   <div class="logos-container">
     {%- if section.settings.title != blank -%}
-      <h2 class="logos-title">{{ section.settings.title }}</h2>
+      <h2 class="logos-title homepage-title">{{ section.settings.title }}</h2>
     {%- endif -%}
 
     {%- if section.blocks.size > 0 -%}
@@ -131,20 +137,20 @@
       "id": "section_padding_top",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 2,
       "unit": "px",
       "label": "顶部内边距",
-      "default": 80
+      "default": 64
     },
     {
       "type": "range",
       "id": "section_padding_bottom",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 2,
       "unit": "px",
       "label": "底部内边距",
-      "default": 80
+      "default": 64
     }
   ],
   "blocks": [

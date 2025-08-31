@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "image_banner": {
+    "image-banner-new": {
       "type": "image-banner-new",
       "settings": {
         "image": "shopify://shop_images/homepage_banner_1.webp",
@@ -131,76 +131,80 @@
         "review_text": "400 reviews",
         "shop_button_text": "Shop Now",
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "logos": {
       "type": "logos",
       "settings": {
-        "title": "Media Report"
+        "title": "Media Report",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
       },
       "blocks": {
         "logo_item_1": {
           "type": "logo_item",
           "settings": {
-            "image": "shopify://shop_images/media_report_1.webp",
+            "image": "shopify://shop_images/media_report_1.webp"
           }
         },
         "logo_item_2": {
           "type": "logo_item",
           "settings": {
-            "image": "shopify://shop_images/media_report_2.webp",
+            "image": "shopify://shop_images/media_report_2.webp"
           }
         },
         "logo_item_3": {
           "type": "logo_item",
           "settings": {
-            "image": "shopify://shop_images/media_report_3.webp",
+            "image": "shopify://shop_images/media_report_3.webp"
           }
         },
         "logo_item_4": {
           "type": "logo_item",
           "settings": {
-            "image": "shopify://shop_images/media_report_4.webp",
+            "image": "shopify://shop_images/media_report_4.webp"
           }
-        },
+        }
       },
       "block_order": [
         "logo_item_1",
         "logo_item_2",
         "logo_item_3",
         "logo_item_4"
-      ],
+      ]
     },
     "image-center-slider": {
       "type": "image-center-slider",
       "settings": {
-        "title": "Inspiring Moments"
+        "title": "Inspiring Moments",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
       },
       "blocks": {
         "slide_item_1": {
           "type": "slide_item",
           "settings": {
-            "image": "shopify://shop_images/moments_banner_1.webp",
+            "image": "shopify://shop_images/moments_banner_1.webp"
           }
         },
         "slide_item_2": {
           "type": "slide_item",
           "settings": {
-            "image": "shopify://shop_images/moments_banner_1.webp",
+            "image": "shopify://shop_images/moments_banner_1.webp"
           }
         },
         "slide_item_3": {
           "type": "slide_item",
           "settings": {
-            "image": "shopify://shop_images/moments_banner_1.webp",
+            "image": "shopify://shop_images/moments_banner_1.webp"
           }
         },
         "slide_item_4": {
           "type": "slide_item",
           "settings": {
-            "image": "shopify://shop_images/moments_banner_1.webp",
+            "image": "shopify://shop_images/moments_banner_1.webp"
           }
         }
       },
@@ -216,6 +220,8 @@
       "settings": {
         "main_title": "Ride Further Together",
         "image": "shopify://shop_images/image_with_text_1.webp",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
       },
       "blocks": {
         "feature_item_1": {
@@ -257,7 +263,9 @@
     "user-reviews-slider": {
       "type": "user-reviews-slider",
       "settings": {
-        "title": "What Our Customers Are Saying?"
+        "title": "What Our Customers Are Saying?",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
       },
       "blocks": {
         "review_item_1": {
@@ -323,7 +331,7 @@
           "settings": {
             "logo": "shopify://shop_images/homepage_gallary_logo_1.webp",
             "title": "Buy Now, Pay Later",
-            "subtitle": "Buy now, pay later with Affirm",
+            "subtitle": "Buy now, pay later with Affirm"
           }
         },
         "gallery_item_4": {
@@ -331,7 +339,7 @@
           "settings": {
             "logo": "shopify://shop_images/homepage_gallary_logo_2.webp",
             "title": "Free Shipping",
-            "subtitle": "Segway pays your shipping fee with orders over $99",
+            "subtitle": "Segway pays your shipping fee with orders over $99"
           }
         }
       },
@@ -347,6 +355,8 @@
       "settings": {
         "title": "News",
         "image": "shopify://shop_images/image_with_info_1.webp",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
       },
       "blocks": {
         "news_item_1": {
@@ -355,7 +365,7 @@
             "title": "What Is a Suspension Electric Unicycle?",
             "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
             "date": "April 10 2025",
-            "image": "shopify://shop_images/homepage_news_1.webp",
+            "image": "shopify://shop_images/homepage_news_1.webp"
           }
         },
         "news_item_2": {
@@ -364,7 +374,7 @@
             "title": "What Is a Suspension Electric Unicycle?",
             "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
             "date": "April 10 2025",
-            "image": "shopify://shop_images/homepage_news_2.webp",
+            "image": "shopify://shop_images/homepage_news_2.webp"
           }
         },
         "news_item_3": {
@@ -373,7 +383,7 @@
             "title": "What Is a Suspension Electric Unicycle?",
             "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
             "date": "April 10 2025",
-            "image": "shopify://shop_images/homepage_news_3.webp",
+            "image": "shopify://shop_images/homepage_news_3.webp"
           }
         },
         "news_item_4": {
@@ -382,7 +392,7 @@
             "title": "What Is a Suspension Electric Unicycle?",
             "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
             "date": "April 10 2025",
-            "image": "shopify://shop_images/homepage_news_4.webp",
+            "image": "shopify://shop_images/homepage_news_4.webp"
           }
         }
       },
@@ -392,10 +402,10 @@
         "news_item_3",
         "news_item_4"
       ]
-    },
+    }
   },
   "order": [
-    "image_banner",
+    "image-banner-new",
     "product_services",
     "product-list",
     "logos",
@@ -403,6 +413,6 @@
     "image-with-features",
     "user-reviews-slider",
     "image-gallery-overla",
-    "image-with-info",
+    "image-with-info"
   ]
 }
