@@ -80,13 +80,39 @@
 
   @media screen and (max-width: 599px) {
     #ProductServices-{{ section.id }} .product-services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    #ProductServices-{{ section.id }} .product-services-item {
+      width: 100%;
+      max-width: 100%;
+      display: flex;
       flex-direction: column;
-      gap: 30px;
+      align-items: center;
+      gap: 20px;
+
+      overflow: hidden;
     }
 
-    #ProductServices-{{ section.id }} .product-services-item {
-      max-width: 100%;
+
+    #ProductServices-{{ section.id }} .product-services-item-image {
+      width: 48px;
+      height: 48px;
     }
+
+    #ProductServices-{{ section.id }} .product-services-item-title,
+    #ProductServices-{{ section.id }} .product-services-item-desc {
+
+      text-align: center;
+    }
+    #ProductServices-{{ section.id }} .product-services-item-title {
+      font-size: 16px;
+    }
+    #ProductServices-{{ section.id }} .product-services-item-desc {
+      font-size: 12px;
+    }
+
   }
 {%- endstyle -%}
 

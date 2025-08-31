@@ -1,4 +1,4 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'section-image-banner-new.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
@@ -81,16 +81,22 @@
     background: transparent;
     pointer-events: auto;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 749px) {
     #Banner-{{ section.id }} .custom-floating-info {
       left: 24px;
-      top: 5%;
+      top: 25%;
     }
+    #Banner-{{ section.id }} .custom-floating-badge {
+    top: -0px;
+    right: -30px;
+    margin-left: 12px;
+    font-size: 16px;
+  }
     #Banner-{{ section.id }} .custom-floating-title {
-      font-size: 36px;
+      font-size: 30px;
     }
     #Banner-{{ section.id }} .custom-floating-subtitle {
-      font-size: 20px;
+      font-size: 18px;
       margin-top: 24px;
     }
   }

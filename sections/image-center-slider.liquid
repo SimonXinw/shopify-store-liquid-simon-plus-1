@@ -167,7 +167,7 @@
     }
 
     #ImageCenterSlider-{{ section.id }} .slider-image {
-      height: 280px;
+      height: auto;
       border-radius: 15px;
     }
 
@@ -186,11 +186,11 @@
     }
 
     #ImageCenterSlider-{{ section.id }} .slider-nav-prev {
-      left: 15px;
+      left: 32px;
     }
 
     #ImageCenterSlider-{{ section.id }} .slider-nav-next {
-      right: 15px;
+      right: 32px;
     }
   }
 {%- endstyle -%}
@@ -255,10 +255,11 @@
           nextEl: '.swiper-button-next-{{ section.id }}',
           prevEl: '.swiper-button-prev-{{ section.id }}',
         },
+
         breakpoints: {
           320: {
             slidesPerView: 'auto',
-            spaceBetween: 0,
+            spaceBetween: 30,
             centeredSlides: true,
             initialSlide: 0, // 手机端从第一张开始
           },
