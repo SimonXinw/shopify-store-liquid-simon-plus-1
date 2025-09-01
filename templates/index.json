@@ -181,6 +181,7 @@
         "slide_item_1": {
           "type": "slide_item",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/moments_banner_1.webp",
             "title": ""
           }
@@ -188,13 +189,16 @@
         "slide_item_2": {
           "type": "slide_item",
           "settings": {
+            "media_type": "video",
             "image": "shopify://shop_images/moments_banner_1.webp",
+            "video": "shopify://files/videos/swiper_banner_video_1.mp4",
             "title": ""
           }
         },
         "slide_item_3": {
           "type": "slide_item",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/moments_banner_1.webp",
             "title": ""
           }
@@ -202,6 +206,7 @@
         "slide_item_4": {
           "type": "slide_item",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/moments_banner_1.webp",
             "title": ""
           }

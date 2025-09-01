@@ -76,70 +76,7 @@
     overflow: hidden;
   }
 
-  #ImageCenterSlider-{{ section.id }} .video-play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-    transition: all 0.3s ease;
-  }
 
-  #ImageCenterSlider-{{ section.id }} .video-play-button:hover {
-    background: rgba(255, 255, 255, 1);
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-
-  #ImageCenterSlider-{{ section.id }} .video-play-button svg {
-    width: 30px;
-    height: 30px;
-    fill: #EC642C;
-    margin-left: 4px;
-  }
-
-  #ImageCenterSlider-{{ section.id }} .video-pause-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.7);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-    transition: all 0.3s ease;
-  }
-
-  #ImageCenterSlider-{{ section.id }} .video-pause-button:hover {
-    background: rgba(0, 0, 0, 0.9);
-  }
-
-  #ImageCenterSlider-{{ section.id }} .video-pause-button svg {
-    width: 20px;
-    height: 20px;
-    fill: white;
-  }
-
-  #ImageCenterSlider-{{ section.id }} .video-container.playing .video-play-button {
-    display: none;
-  }
-
-  #ImageCenterSlider-{{ section.id }} .video-container.playing .video-pause-button {
-    display: flex;
-  }
 
   #ImageCenterSlider-{{ section.id }} .slider-nav-button {
     position: absolute;
@@ -273,15 +210,7 @@
       right: 32px;
     }
 
-    #ImageCenterSlider-{{ section.id }} .video-play-button {
-      width: 60px;
-      height: 60px;
-    }
 
-    #ImageCenterSlider-{{ section.id }} .video-play-button svg {
-      width: 24px;
-      height: 24px;
-    }
   }
 {%- endstyle -%}
 
@@ -297,29 +226,16 @@
           <div class="swiper-wrapper">
             {%- for block in section.blocks -%}
               <div class="swiper-slide" {{ block.shopify_attributes }}>
-                {%- if block.settings.media_type == 'video' and block.settings.video_url != blank -%}
-                  <div class="video-container" data-video-url="{{ block.settings.video_url }}">
-                    <video 
-                      class="slider-video" 
-                      width="1100" 
-                      height="600"
-                      preload="metadata"
-                      muted
-                      playsinline
-                    >
-                      <source src="{{ block.settings.video_url }}" type="video/mp4">
-                      您的浏览器不支持视频播放。
-                    </video>
-                    <button class="video-play-button" type="button" aria-label="播放视频">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </button>
-                    <button class="video-pause-button" type="button" aria-label="暂停视频">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                      </svg>
-                    </button>
+                {%- if block.settings.media_type == 'video' and block.settings.video != blank -%}
+                  <div class="video-container">
+                    {{ block.settings.video | video_tag: 
+                       class: 'slider-video',
+                       autoplay: false,
+                       muted: false,
+                       controls: true,
+                       playsinline: true,
+                       preload: 'metadata'
+                    }}
                   </div>
                 {%- elsif block.settings.image != blank -%}
                   <img
@@ -393,7 +309,6 @@
         on: {
           init: function () {
             console.log('Image Center Slider initialized for section {{ section.id }}');
-            initializeVideoControls();
           },
           slideChange: function () {
             // 切换幻灯片时暂停所有视频
@@ -405,57 +320,12 @@
         },
       });
 
-      // 初始化视频控件
-      function initializeVideoControls() {
-        const videoContainers = document.querySelectorAll('#ImageCenterSlider-{{ section.id }} .video-container');
-        
-        videoContainers.forEach(container => {
-          const video = container.querySelector('video');
-          const playButton = container.querySelector('.video-play-button');
-          const pauseButton = container.querySelector('.video-pause-button');
-          
-          if (video && playButton && pauseButton) {
-            // 播放按钮事件
-            playButton.addEventListener('click', function() {
-              video.play();
-              container.classList.add('playing');
-            });
-            
-            // 暂停按钮事件
-            pauseButton.addEventListener('click', function() {
-              video.pause();
-              container.classList.remove('playing');
-            });
-            
-            // 视频结束事件
-            video.addEventListener('ended', function() {
-              container.classList.remove('playing');
-            });
-            
-            // 视频播放事件
-            video.addEventListener('play', function() {
-              container.classList.add('playing');
-            });
-            
-            // 视频暂停事件
-            video.addEventListener('pause', function() {
-              container.classList.remove('playing');
-            });
-          }
-        });
-      }
-      
+
       // 暂停所有视频
       function pauseAllVideos() {
         const videos = document.querySelectorAll('#ImageCenterSlider-{{ section.id }} video');
-        const videoContainers = document.querySelectorAll('#ImageCenterSlider-{{ section.id }} .video-container');
-        
         videos.forEach(video => {
           video.pause();
-        });
-        
-        videoContainers.forEach(container => {
-          container.classList.remove('playing');
         });
       }
       
@@ -529,14 +399,14 @@
           "info": "仅当选择图片时使用"
         },
         {
-          "type": "url",
-          "id": "video_url",
-          "label": "视频链接",
-          "info": "仅当选择视频时使用，支持MP4直链或YouTube/Vimeo链接"
+          "type": "video",
+          "id": "video",
+          "label": "轮播视频",
+          "info": "仅当选择视频时使用"
         },
         {
           "type": "text",
-          "id": "title",
+          "id": "title", 
           "label": "图片标题（用于alt属性）"
         }
       ]
