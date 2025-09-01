@@ -59,33 +59,23 @@
     gap: 20px;
   }
 
-  /* 移动端停用自动滚动，改为手动滚动 */
+  /* 移动端也启用自动滚动 */
   @media screen and (max-width: 768px) {
     #UserReviewsSlider-{{ section.id }} .reviews-slider {
-      overflow-x: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #808080 transparent;
-    }
-
-    #UserReviewsSlider-{{ section.id }} .reviews-slider::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    #UserReviewsSlider-{{ section.id }} .reviews-slider::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    #UserReviewsSlider-{{ section.id }} .reviews-slider::-webkit-scrollbar-thumb {
-      background: #808080;
-      border-radius: 4px;
+      overflow: hidden;
     }
 
     #UserReviewsSlider-{{ section.id }} .reviews-track {
-      animation: none;
+      animation: scrollLeft 40s linear infinite;
+    }
+
+    #UserReviewsSlider-{{ section.id }} .reviews-track:hover {
+      animation-play-state: paused;
     }
 
     #UserReviewsSlider-{{ section.id }} .desktop-duplicate {
-      display: none;
+      display: flex;
+      gap: 20px;
     }
   }
 
@@ -209,6 +199,11 @@
       height: 48px;
     }
 
+    #UserReviewsSlider-{{ section.id }} .user-details {
+        flex-direction: column;
+        gap: 8px;
+    }
+
     #UserReviewsSlider-{{ section.id }} .user-name {
       font-size: 16px;
     }
@@ -271,7 +266,7 @@
               </div>
             </div>
           {%- endfor -%}
-          
+
           {%- comment -%} PC端复制一遍内容以实现无缝循环 {%- endcomment -%}
           <div class="desktop-duplicate">
             {%- for block in section.blocks -%}
