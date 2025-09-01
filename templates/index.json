@@ -328,12 +328,39 @@
             "user_name": "Pawel Urbanik",
             "rating": 4
           }
+        },
+        "review_item_6Echei": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "这是一个很棒的产品，我非常满意！",
+            "user_name": "张三",
+            "rating": 5
+          }
+        },
+        "review_item_mkRKwY": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "这是一个很棒的产品，我非常满意！",
+            "user_name": "张三",
+            "rating": 5
+          }
+        },
+        "review_item_Ufp4zh": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "这是一个很棒的产品，我非常满意！",
+            "user_name": "张三",
+            "rating": 5
+          }
         }
       },
       "block_order": [
         "review_item_1",
         "review_item_2",
-        "review_item_3"
+        "review_item_3",
+        "review_item_6Echei",
+        "review_item_mkRKwY",
+        "review_item_Ufp4zh"
       ],
       "settings": {
         "title": "What Our Customers Are Saying?",
