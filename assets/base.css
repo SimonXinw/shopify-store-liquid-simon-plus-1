@@ -126,8 +126,8 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 @media screen and (min-width: 990px) {
   .header:not(.drawer-menu).page-width {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
   }
 
   .page-width--narrow {
@@ -2744,10 +2744,13 @@ details[open] > .header__icon--menu .icon-hamburger {
   transform: translateY(-1.5rem);
 }
 
-details[open] > .header__submenu {
+details[open] > .header__submenu,
+header-menu:hover > details > .header__submenu {
   animation: animateMenuOpen var(--duration-default) ease;
   animation-fill-mode: forwards;
   z-index: 1;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion) {
@@ -2818,8 +2821,41 @@ details[open]:hover > .header__menu-item {
   text-decoration-thickness: 0.2rem;
 }
 
-details[open] > .header__menu-item .icon-caret {
-  transform: rotate(180deg);
+/* Remove caret rotation since we removed the caret icons */
+
+/* Add hover styles for dropdown menus */
+hover-header-menu:hover > details {
+  pointer-events: auto;
+}
+
+hover-header-menu:hover > details > .header__submenu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+/* Prevent submenu from closing when hovering over it */
+hover-header-menu > details > .header__submenu:hover {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+/* Ensure smooth transition for hover menus */
+hover-header-menu > details > .header__submenu {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  min-width: max-content;
+  width: auto;
+  white-space: nowrap;
+}
+
+/* Limit submenu width to content */
+hover-header-menu > details > .header__submenu.list-menu {
+  min-width: 180px;
+  max-width: 300px;
+  width: max-content;
 }
 
 .header__active-menu-item {
@@ -2864,7 +2900,13 @@ details[open] > .header__menu-item .icon-caret {
 
 .header__submenu .header__menu-item {
   justify-content: space-between;
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1.5rem;
+}
+
+/* Tighter padding for hover menus */
+hover-header-menu .header__submenu .header__menu-item {
+  padding: 0.8rem 1.2rem;
+  white-space: nowrap;
 }
 
 .header__submenu .header__menu-item:hover {
@@ -2882,8 +2924,17 @@ details[open] > .header__menu-item .icon-caret {
 }
 
 header-menu > details,
+hover-header-menu > details,
 details-disclosure > details {
   position: relative;
+}
+
+/* Position submenu relative to parent */
+hover-header-menu > details > .header__submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
 }
 
 @keyframes animateMenuOpen {
