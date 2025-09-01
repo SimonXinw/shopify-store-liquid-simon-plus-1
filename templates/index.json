@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "image-banner-new": {
       "type": "image-banner-new",
@@ -183,7 +183,14 @@
           "settings": {
             "media_type": "image",
             "image": "shopify://shop_images/moments_banner_1.webp",
-            "title": ""
+            "title": "",
+            "show_footer": false,
+            "text_group_1_desc": "",
+            "text_group_1_title": "",
+            "text_group_2_desc": "",
+            "text_group_2_title": "",
+            "button_text": "",
+            "button_link": ""
           }
         },
         "slide_item_2": {
@@ -192,7 +199,14 @@
             "media_type": "video",
             "image": "shopify://shop_images/moments_banner_1.webp",
             "video": "shopify://files/videos/swiper_banner_video_1.mp4",
-            "title": ""
+            "title": "",
+            "show_footer": true,
+            "text_group_1_desc": "High-Power Motor",
+            "text_group_1_title": "5000 Peak",
+            "text_group_2_desc": "High-Power Motor",
+            "text_group_2_title": "5000 Peak",
+            "button_text": "LEARN MORE",
+            "button_link": "shopify://products/kingsong-16x"
           }
         },
         "slide_item_3": {
@@ -200,7 +214,14 @@
           "settings": {
             "media_type": "image",
             "image": "shopify://shop_images/moments_banner_1.webp",
-            "title": ""
+            "title": "",
+            "show_footer": false,
+            "text_group_1_desc": "",
+            "text_group_1_title": "",
+            "text_group_2_desc": "",
+            "text_group_2_title": "",
+            "button_text": "",
+            "button_link": ""
           }
         },
         "slide_item_4": {
@@ -208,7 +229,14 @@
           "settings": {
             "media_type": "image",
             "image": "shopify://shop_images/moments_banner_1.webp",
-            "title": ""
+            "title": "",
+            "show_footer": false,
+            "text_group_1_desc": "2",
+            "text_group_1_title": "打发的",
+            "text_group_2_desc": "",
+            "text_group_2_title": "",
+            "button_text": "",
+            "button_link": ""
           }
         }
       },
