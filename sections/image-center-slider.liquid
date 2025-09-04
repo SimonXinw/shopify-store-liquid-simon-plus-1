@@ -51,18 +51,102 @@
     transition: opacity 0.3s ease;
     width: 70% !important; /* 所有图片都是70%宽度 */
     flex-shrink: 0;
+    position: relative;
   }
 
   #ImageCenterSlider-{{ section.id }} .swiper-slide-active {
     opacity: 1;
   }
 
-  #ImageCenterSlider-{{ section.id }} .slider-image {
+  #ImageCenterSlider-{{ section.id }} .slider-image,
+  #ImageCenterSlider-{{ section.id }} .slider-video {
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
     display: block;
   }
+
+  #ImageCenterSlider-{{ section.id }} .slider-video {
+    background: #000;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer {
+    position: absolute;
+    bottom: 80px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-radius: 12px;
+    padding: 20px 24px;
+    z-index: 6;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+    font-size: 20px;
+    line-height: 1.2;
+    color: white;
+    margin: 0 0 4px 0;
+    font-weight: 400;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+    font-size: 36px;
+    line-height: 1.2;
+    color: white;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-text-group.has-border {
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    padding-left: 24px;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+    font-size: 16px;
+    line-height: 1;
+    color: white;
+    background: #EC642C;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-button:hover {
+    background: #D55A26;
+    transform: translateY(-1px);
+  }
+
+
 
   #ImageCenterSlider-{{ section.id }} .slider-nav-button {
     position: absolute;
@@ -119,7 +203,8 @@
       font-size: 56px;
     }
 
-    #ImageCenterSlider-{{ section.id }} .slider-image {
+    #ImageCenterSlider-{{ section.id }} .slider-image,
+    #ImageCenterSlider-{{ section.id }} .slider-video {
       height: 420px;
     }
 
@@ -135,6 +220,26 @@
     #ImageCenterSlider-{{ section.id }} .slider-nav-next {
       right: 30px;
     }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer {
+      left: 30px;
+      right: 30px;
+      bottom: 30px;
+      padding: 16px 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+      font-size: 18px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+      font-size: 24px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+      font-size: 18px;
+      padding: 10px 12px;
+    }
   }
 
   @media screen and (max-width: 899px) {
@@ -143,7 +248,8 @@
       margin-bottom: 30px;
     }
 
-    #ImageCenterSlider-{{ section.id }} .slider-image {
+    #ImageCenterSlider-{{ section.id }} .slider-image,
+    #ImageCenterSlider-{{ section.id }} .slider-video {
       height: 350px;
     }
 
@@ -158,6 +264,39 @@
     #ImageCenterSlider-{{ section.id }} .slider-nav-next {
       right: 20px;
     }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer {
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+      align-items: stretch;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-left {
+      justify-content: center;
+      gap: 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-text-group.has-border {
+      padding-left: 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+      font-size: 16px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+      font-size: 22px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+      font-size: 16px;
+      padding: 10px 12px;
+      text-align: center;
+    }
   }
 
   @media screen and (max-width: 599px) {
@@ -166,7 +305,8 @@
       margin-bottom: 24px;
     }
 
-    #ImageCenterSlider-{{ section.id }} .slider-image {
+    #ImageCenterSlider-{{ section.id }} .slider-image,
+    #ImageCenterSlider-{{ section.id }} .slider-video {
       height: auto;
       border-radius: 15px;
     }
@@ -192,6 +332,35 @@
     #ImageCenterSlider-{{ section.id }} .slider-nav-next {
       right: 32px;
     }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      padding: 12px;
+      gap: 12px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-left {
+      gap: 16px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-text-group.has-border {
+      padding-left: 16px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+      font-size: 14px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+      font-size: 18px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+      font-size: 14px;
+      padding: 8px 10px;
+    }
   }
 {%- endstyle -%}
 
@@ -206,8 +375,19 @@
         <div class="swiper mySlider-{{ section.id }}">
           <div class="swiper-wrapper">
             {%- for block in section.blocks -%}
-              {%- if block.settings.image != blank -%}
-                <div class="swiper-slide" {{ block.shopify_attributes }}>
+              <div class="swiper-slide" {{ block.shopify_attributes }}>
+                {%- if block.settings.media_type == 'video' and block.settings.video != blank -%}
+                  <div class="video-container">
+                    {{ block.settings.video | video_tag: 
+                       class: 'slider-video',
+                       autoplay: false,
+                       muted: false,
+                       controls: true,
+                       playsinline: true,
+                       preload: 'metadata'
+                    }}
+                  </div>
+                {%- elsif block.settings.image != blank -%}
                   <img
                     src="{{ block.settings.image | image_url: width: 1100 }}"
                     alt="{{ block.settings.image.alt | default: block.settings.title | default: 'Slider Image' }}"
@@ -216,8 +396,44 @@
                     height="600"
                     loading="lazy"
                   >
-                </div>
-              {%- endif -%}
+                {%- endif -%}
+                
+                {%- if block.settings.show_footer -%}
+                  <div class="slide-footer">
+                    <div class="slide-footer-left">
+                      {%- if block.settings.text_group_1_desc != blank or block.settings.text_group_1_title != blank -%}
+                        <div class="slide-footer-text-group">
+                          {%- if block.settings.text_group_1_desc != blank -%}
+                            <p class="slide-footer-desc">{{ block.settings.text_group_1_desc }}</p>
+                          {%- endif -%}
+                          {%- if block.settings.text_group_1_title != blank -%}
+                            <h3 class="slide-footer-title">{{ block.settings.text_group_1_title }}</h3>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                      
+                      {%- if block.settings.text_group_2_desc != blank or block.settings.text_group_2_title != blank -%}
+                        <div class="slide-footer-text-group{% if block.settings.text_group_1_desc != blank or block.settings.text_group_1_title != blank %} has-border{% endif %}">
+                          {%- if block.settings.text_group_2_desc != blank -%}
+                            <p class="slide-footer-desc">{{ block.settings.text_group_2_desc }}</p>
+                          {%- endif -%}
+                          {%- if block.settings.text_group_2_title != blank -%}
+                            <h3 class="slide-footer-title">{{ block.settings.text_group_2_title }}</h3>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    
+                    {%- if block.settings.button_text != blank -%}
+                      {%- if block.settings.button_link != blank -%}
+                        <a href="{{ block.settings.button_link }}" class="slide-footer-button">{{ block.settings.button_text }}</a>
+                      {%- else -%}
+                        <span class="slide-footer-button">{{ block.settings.button_text }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
             {%- endfor -%}
           </div>
         </div>
@@ -280,11 +496,25 @@
           init: function () {
             console.log('Image Center Slider initialized for section {{ section.id }}');
           },
+          slideChange: function () {
+            // 切换幻灯片时暂停所有视频
+            pauseAllVideos();
+          },
           error: function (error) {
             console.error('Swiper error:', error);
           },
         },
       });
+
+
+      // 暂停所有视频
+      function pauseAllVideos() {
+        const videos = document.querySelectorAll('#ImageCenterSlider-{{ section.id }} video');
+        videos.forEach(video => {
+          video.pause();
+        });
+      }
+      
     } else {
       console.error('Swiper is not loaded');
     }
@@ -333,14 +563,83 @@
       "name": "轮播图片",
       "settings": [
         {
+          "type": "select",
+          "id": "media_type",
+          "label": "媒体类型",
+          "options": [
+            {
+              "value": "image",
+              "label": "图片"
+            },
+            {
+              "value": "video",
+              "label": "视频"
+            }
+          ],
+          "default": "image"
+        },
+        {
           "type": "image_picker",
           "id": "image",
-          "label": "轮播图片"
+          "label": "轮播图片",
+          "info": "仅当选择图片时使用"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "轮播视频",
+          "info": "仅当选择视频时使用"
         },
         {
           "type": "text",
-          "id": "title",
+          "id": "title", 
           "label": "图片标题（用于alt属性）"
+        },
+        {
+          "type": "header",
+          "content": "Footer 信息"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_footer",
+          "label": "显示Footer信息",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "text_group_1_desc",
+          "label": "第一组文本 - 描述",
+          "info": "第一组文本的描述文字（20px）"
+        },
+        {
+          "type": "text",
+          "id": "text_group_1_title",
+          "label": "第一组文本 - 标题",
+          "info": "第一组文本的标题文字（26px）"
+        },
+        {
+          "type": "text",
+          "id": "text_group_2_desc",
+          "label": "第二组文本 - 描述",
+          "info": "第二组文本的描述文字（20px）"
+        },
+        {
+          "type": "text",
+          "id": "text_group_2_title",
+          "label": "第二组文本 - 标题",
+          "info": "第二组文本的标题文字（26px）"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "按钮文案",
+          "info": "按钮显示的文字"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "按钮链接",
+          "info": "点击按钮跳转的链接"
         }
       ]
     }

@@ -393,6 +393,7 @@
 
 .header-localization:not(.menu-drawer__localization) .localization-form:only-child .localization-form__select {
   margin: 0;
+  display: none;
 }
 
 .header-localization:not(.menu-drawer__localization).localization-form__select > span {
