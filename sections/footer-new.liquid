@@ -1,0 +1,779 @@
+{%- style -%}
+  #FooterNew-{{ section.id }} {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 65px 140px 55px 140px;
+  }
+
+  #FooterNew-{{ section.id }} .footer-container {
+    margin: 0 auto;
+    max-width: 1680px;
+  }
+
+  #FooterNew-{{ section.id }} .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 80px;
+    margin-bottom: 60px;
+  }
+
+  #FooterNew-{{ section.id }} .footer-left {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #FooterNew-{{ section.id }} .footer-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #FooterNew-{{ section.id }} .footer-column-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+    margin: 0 0 55px 0;
+  }
+
+  #FooterNew-{{ section.id }} .footer-column-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  #FooterNew-{{ section.id }} .footer-link {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #FooterNew-{{ section.id }} .footer-link:hover {
+    opacity: 0.8;
+  }
+
+  #FooterNew-{{ section.id }} .footer-right {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+    margin: 0;
+    margin-bottom: 37px;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-form {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin:0;
+    margin-bottom: 20px;
+
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-input {
+    width: 405px;
+    height: 73px;
+    padding: 17px 20px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    background-color: transparent;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    outline: none;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-input::placeholder {
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-button {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-button:hover {
+    background-color: #f0f0f0;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-button img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-message {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #ff6b6b;
+    margin-top: 10px;
+  }
+
+  #FooterNew-{{ section.id }} .newsletter-success {
+    color: #51cf66;
+  }
+
+  #FooterNew-{{ section.id }} .social-icons {
+    position: relative;
+    left: -30px;
+    display: flex;
+    align-items: center;
+  }
+
+  #FooterNew-{{ section.id }} .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #FooterNew-{{ section.id }} .social-icon img {
+    width: 363px;
+    height: 70px;
+  }
+
+  #FooterNew-{{ section.id }} .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    margin-bottom: 25px;
+  }
+
+  #FooterNew-{{ section.id }} .contact-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+    margin: 0;
+  }
+
+  #FooterNew-{{ section.id }} .contact-email {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+    margin: 0;
+  }
+
+  #FooterNew-{{ section.id }} .vision-section {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  #FooterNew-{{ section.id }} .vision-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+    margin: 0;
+  }
+
+  #FooterNew-{{ section.id }} .vision-text {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    color: #fff;
+    margin: 0;
+  }
+
+  #FooterNew-{{ section.id }} .footer-bottom {
+    padding-top: 40px;
+  }
+
+  #FooterNew-{{ section.id }} .payment-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  #FooterNew-{{ section.id }} .payment-icon {
+    width: 690px;
+    height: 64px;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 1199px) {
+    #FooterNew-{{ section.id }} .footer-main {
+      gap: 60px;
+    }
+
+    #FooterNew-{{ section.id }} .footer-left {
+      gap: 40px;
+    }
+
+    #FooterNew-{{ section.id }} .footer-column-title,
+    #FooterNew-{{ section.id }} .newsletter-title,
+    #FooterNew-{{ section.id }} .contact-title,
+    #FooterNew-{{ section.id }} .vision-title {
+      font-size: 28px;
+    }
+
+    #FooterNew-{{ section.id }} .footer-link,
+    #FooterNew-{{ section.id }} .contact-email,
+    #FooterNew-{{ section.id }} .vision-text {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    #FooterNew-{{ section.id }} .footer-main {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+
+    #FooterNew-{{ section.id }} .footer-left {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    #FooterNew-{{ section.id }} .footer-column-title,
+    #FooterNew-{{ section.id }} .newsletter-title,
+    #FooterNew-{{ section.id }} .contact-title,
+    #FooterNew-{{ section.id }} .vision-title {
+      font-size: 24px;
+    }
+
+    #FooterNew-{{ section.id }} .footer-link,
+    #FooterNew-{{ section.id }} .contact-email,
+    #FooterNew-{{ section.id }} .vision-text {
+      font-size: 16px;
+    }
+
+    #FooterNew-{{ section.id }} .payment-icons {
+      gap: 15px;
+    }
+
+    #FooterNew-{{ section.id }} .payment-icon {
+      height: 25px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    #FooterNew-{{ section.id }} {
+      padding: 32px 20px;
+    }
+    #FooterNew-{{ section.id }} .footer-left {
+      gap: 30px;
+    }
+    /* newsletter input 移动端适配 */
+    #FooterNew-{{ section.id }} .newsletter-input {
+      width: 100%;
+      min-width: 0;
+      height: 48px;
+      font-size: 16px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      box-sizing: border-box;
+      border-width: 1px;
+    }
+
+    /* 适配 placeholder 样式 */
+    #FooterNew-{{ section.id }} .newsletter-input::placeholder {
+      font-size: 16px;
+    }
+
+
+    #FooterNew-{{ section.id }} .newsletter-button {
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+      padding: 0;
+      border-radius: 6px;
+    }
+
+    #FooterNew-{{ section.id }} .newsletter-button img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+
+    #FooterNew-{{ section.id }} .footer-column-title,
+    #FooterNew-{{ section.id }} .newsletter-title,
+    #FooterNew-{{ section.id }} .contact-title,
+    #FooterNew-{{ section.id }} .vision-title {
+      font-size: 20px;
+    }
+
+    #FooterNew-{{ section.id }} .footer-link,
+    #FooterNew-{{ section.id }} .contact-email,
+    #FooterNew-{{ section.id }} .vision-text {
+      font-size: 14px;
+    }
+
+    #FooterNew-{{ section.id }} .social-icons {
+      left: 0;
+    }
+
+    #FooterNew-{{ section.id }} .social-icon {
+      width: 35px;
+      height: 35px;
+    }
+
+    #FooterNew-{{ section.id }} .payment-icons {
+      gap: 10px;
+    }
+
+    #FooterNew-{{ section.id }} .payment-icon {
+      height: 36px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="FooterNew-{{ section.id }}" class="footer-new">
+  <div class="footer-container">
+    <div class="footer-main">
+      <!-- 左侧三列 -->
+      <div class="footer-left">
+        <!-- Company 列 -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">{{ section.settings.company_title | default: 'Company' }}</h3>
+          <div class="footer-column-links">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'company_link' -%}
+                <a href="{{ block.settings.link }}" class="footer-link">{{ block.settings.text }}</a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Information 列 -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">{{ section.settings.information_title | default: 'Information' }}</h3>
+          <div class="footer-column-links">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'information_link' -%}
+                <a href="{{ block.settings.link }}" class="footer-link">{{ block.settings.text }}</a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Customer Service 列 -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">
+            {{ section.settings.customer_service_title | default: 'Customer Service' }}
+          </h3>
+          <div class="footer-column-links">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'customer_service_link' -%}
+                <a href="{{ block.settings.link }}" class="footer-link">{{ block.settings.text }}</a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧区域 -->
+      <div class="footer-right">
+        <!-- 订阅区域 -->
+        <div class="newsletter-section">
+          <h3 class="newsletter-title">
+            {{ section.settings.newsletter_title | default: 'Subscribe To Our Newsletter' }}
+          </h3>
+          {%- form 'customer', id: 'ContactFooterNew', class: 'newsletter-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="newsletter-input"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="ContactFooterNew-error"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="ContactFooterNew-success"
+              {% endif %}
+              placeholder="Email"
+              required
+            >
+            <button
+              type="submit"
+              class="newsletter-button"
+              name="commit"
+              id="SubscribeNew"
+              aria-label="Subscribe"
+            >
+              <img
+                src="https://cdn.shopify.com/s/files/1/0676/9170/8603/files/arrow_right.webp?v=1756544793"
+                alt="箭头"
+                width="44"
+                height="44"
+                loading="lazy"
+              >
+            </button>
+            {%- if form.errors -%}
+              <div class="newsletter-message" id="ContactFooterNew-error">
+                {{- form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email -}}
+              </div>
+            {%- endif -%}
+          {%- endform -%}
+          {%- if form.posted_successfully? -%}
+            <div class="newsletter-message newsletter-success" id="ContactFooterNew-success">
+              {{- 'newsletter.success' | t }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <!-- 社交媒体图标 -->
+        <div class="social-icons">
+          {%- if section.settings.social_icon != blank -%}
+            <a href="{{ section.settings.social_icon_link }}" class="social-icon" target="_blank" rel="noopener">
+              <img
+                src="{{ section.settings.social_icon | image_url: width: 363, height: 70 }}"
+                alt="{{ section.settings.social_icon_alt | default: 'Social Media Icon' }}"
+                width="363"
+                height="70"
+                loading="lazy"
+              >
+            </a>
+          {%- endif -%}
+        </div>
+
+        <!-- 售前支持 -->
+        <div class="contact-info">
+          <h3 class="contact-title">{{ section.settings.contact_title | default: 'Pre-sales Support :' }}</h3>
+          <p class="contact-email">{{ section.settings.contact_email | default: 'info@top-feel.com' }}</p>
+        </div>
+
+        <!-- 愿景 -->
+        <div class="vision-section">
+          <h3 class="vision-title">{{ section.settings.vision_title | default: 'Vision' }}</h3>
+          <p class="vision-text">
+            {{
+              section.settings.vision_text
+              | default: 'Imagine: an early morning adventure through the bustling streets, effortlessly moving between the rhythms of the city. Say goodbye to the banal routine and embrace the excitement of the unknown. Join us on a journey that makes every commute an adventure!'
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部支付方式 -->
+    <div class="footer-bottom">
+      <div class="payment-icons">
+        {%- if section.settings.payment_icon != blank -%}
+          <img
+            src="{{ section.settings.payment_icon | image_url: width: 690, height: 64 }}"
+            alt="Payment Method"
+            class="payment-icon"
+            width="690"
+            height="64"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer New",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "company_title",
+      "label": "Company 标题",
+      "default": "Company"
+    },
+    {
+      "type": "text",
+      "id": "information_title",
+      "label": "Information 标题",
+      "default": "Information"
+    },
+    {
+      "type": "text",
+      "id": "customer_service_title",
+      "label": "Customer Service 标题",
+      "default": "Customer Service"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "订阅标题",
+      "default": "Subscribe To Our Newsletter"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_icon",
+      "label": "社交媒体图标"
+    },
+    {
+      "type": "text",
+      "id": "social_icon_link",
+      "label": "社交媒体链接",
+      "default": "https://www.facebook.com/topfeel"
+    },
+    {
+      "type": "text",
+      "id": "social_icon_alt",
+      "label": "社交媒体替代文本",
+      "default": "Social Media Icon"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "联系标题",
+      "default": "Pre-sales Support :"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "联系邮箱",
+      "default": "info@top-feel.com"
+    },
+    {
+      "type": "text",
+      "id": "vision_title",
+      "label": "愿景标题",
+      "default": "Vision"
+    },
+    {
+      "type": "textarea",
+      "id": "vision_text",
+      "label": "愿景文本",
+      "default": "Imagine: an early morning adventure through the bustling streets, effortlessly moving between the rhythms of the city. Say goodbye to the banal routine and embrace the excitement of the unknown. Join us on a journey that makes every commute an adventure!"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_icon",
+      "label": "支付方式图标"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "company_link",
+      "name": "Company 链接",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "链接文本",
+          "default": "Topfeel Story"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接地址"
+        }
+      ]
+    },
+    {
+      "type": "information_link",
+      "name": "Information 链接",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "链接文本",
+          "default": "Topfeel Story"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接地址"
+        }
+      ]
+    },
+    {
+      "type": "customer_service_link",
+      "name": "Customer Service 链接",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "链接文本",
+          "default": "Topfeel Story"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接地址"
+        }
+      ]
+    },
+    {
+      "type": "social_icon",
+      "name": "社交媒体图标",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "图标图片"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接地址"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "替代文本"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer New",
+      "blocks": [
+        {
+          "type": "company_link",
+          "settings": {
+            "text": "Topfeel Story",
+            "link": "/pages/topfeel-story"
+          }
+        },
+        {
+          "type": "company_link",
+          "settings": {
+            "text": "Contact US",
+            "link": "/pages/contact-us"
+          }
+        },
+        {
+          "type": "company_link",
+          "settings": {
+            "text": "Affiliates and Creators",
+            "link": "/pages/affiliates-and-creators"
+          }
+        },
+        {
+          "type": "company_link",
+          "settings": {
+            "text": "Customer Reviews",
+            "link": "/pages/customer-reviews"
+          }
+        },
+        {
+          "type": "information_link",
+          "settings": {
+            "text": "Topfeel Story",
+            "link": "/pages/topfeel-story"
+          }
+        },
+        {
+          "type": "information_link",
+          "settings": {
+            "text": "Contact US",
+            "link": "/pages/contact-us"
+          }
+        },
+        {
+          "type": "information_link",
+          "settings": {
+            "text": "Affiliates and Creators",
+            "link": "/pages/affiliates-and-creators"
+          }
+        },
+        {
+          "type": "information_link",
+          "settings": {
+            "text": "Customer Reviews",
+            "link": "/pages/customer-reviews"
+          }
+        },
+        {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Topfeel Story",
+            "link": "/pages/topfeel-story"
+          }
+        },
+        {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Contact US",
+            "link": "/pages/contact-us"
+          }
+        },
+        {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Affiliates and Creators",
+            "link": "/pages/affiliates-and-creators"
+          }
+        },
+        {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Customer Reviews",
+            "link": "/pages/customer-reviews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

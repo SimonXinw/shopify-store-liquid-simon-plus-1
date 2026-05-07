@@ -1,0 +1,482 @@
+{%- style -%}
+  #ImageGalleryOverla-{{ section.id }} {
+    width: 100%;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #ImageGalleryOverla-{{ section.id }} {
+      padding: 32px 0 32px 0;
+    }
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0 0 40px 0;
+    text-align: left;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-grid {
+    display: grid;
+    grid-template-columns: 48% 22.5% 23.5%;
+    gap: 45px;
+    row-gap: 50px;
+    width: 100%;
+    height: 600px;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-item {
+    position: relative;
+    background-color: #F2F2F5;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-item.no-image {
+    background-color: #F2F2F5;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-item.first-column {
+    grid-row: span 2;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-item.second-column {
+    grid-row: span 2;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .image-gallery-item.third-column {
+    grid-row: span 1;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-content {
+    position: absolute;
+    z-index: 2;
+
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-content.first-column {
+    left: 60px;
+    top: 80px;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-content.second-column {
+    left: 60px;
+    top: 80px;
+    padding-right: 100px;
+  }
+  #ImageGalleryOverla-{{ section.id }} .floating-content.second-column  .floating-desc {
+    font-size: 20px;
+    padding-right: 30px;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-content.third-column {
+    left: 40px;
+    top: 20px;
+    padding-right: 40px;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-content.third-column .floating-subtitle {
+    font-size: 22px;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #EC642C;
+    margin: 0 0 25px 0;
+
+    white-space: nowrap;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-subtitle {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0 0 17px 0;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-desc {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0;
+  }
+
+  #ImageGalleryOverla-{{ section.id }} .floating-content .floating-logo {
+    width: 270px;
+    object-fit: contain;
+    margin: 0 0 12px 0;
+  }
+
+  @media screen and (max-width: 1199px) {
+    #ImageGalleryOverla-{{ section.id }} .image-gallery-title {
+      font-size: 56px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-title {
+      font-size: 32px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-subtitle {
+      font-size: 24px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-desc {
+      font-size: 18px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-logo {
+      width: 300px;
+      object-fit: contain;
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    #ImageGalleryOverla-{{ section.id }} .image-gallery-title {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .image-gallery-grid {
+      grid-template-columns: 1fr;
+      height: auto;
+      gap: 30px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .image-gallery-item {
+      height: 400px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-content {
+      left: 30px !important;
+      top: 40px !important;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-title {
+      font-size: 28px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-subtitle {
+      font-size: 20px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-desc {
+      font-size: 16px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-logo {
+      width: 200px;
+      height: 82px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    #ImageGalleryOverla-{{ section.id }} .image-gallery-title {
+      font-size: 36px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .image-gallery-item {
+      height: 300px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-content {
+      left: 20px !important;
+      top: 30px !important;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-title {
+      font-size: 24px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-subtitle {
+      font-size: 18px !important;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-desc {
+      font-size: 14px !important;
+      max-width: 190px;
+    }
+
+    #ImageGalleryOverla-{{ section.id }} .floating-logo {
+      width: 160px !important;
+      height: 64px !important;
+    }
+  }
+{%- endstyle -%}
+
+<div id="ImageGalleryOverla-{{ section.id }}" class="section">
+  <div class="image-gallery-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="image-gallery-title homepage-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="image-gallery-grid">
+      <!-- 第一列 -->
+      <div class="image-gallery-item first-column {% unless section.blocks[0].settings.image %}no-image{% endunless %}">
+        {%- if section.blocks[0].settings.image -%}
+          <img
+            src="{{ section.blocks[0].settings.image | image_url: width: 1846 }}"
+            alt="{{ section.blocks[0].settings.image.alt | default: 'Gallery Image' }}"
+            width="923"
+            height="600"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <div class="floating-content first-column">
+          {%- if section.blocks[0].settings.logo -%}
+            <img
+              src="{{ section.blocks[0].settings.logo | image_url: width: 600 }}"
+              alt="{{ section.blocks[0].settings.logo.alt | default: 'Logo' }}"
+              class="floating-logo"
+              width="300"
+              height="123"
+              loading="lazy"
+            >
+          {%- endif -%}
+          {%- if section.blocks[0].settings.title != blank -%}
+            <h3 class="floating-title">{{ section.blocks[0].settings.title }}</h3>
+          {%- endif -%}
+          {%- if section.blocks[0].settings.subtitle != blank -%}
+            <h4 class="floating-subtitle">{{ section.blocks[0].settings.subtitle }}</h4>
+          {%- endif -%}
+          {%- if section.blocks[0].settings.description != blank -%}
+            <p class="floating-desc">{{ section.blocks[0].settings.description }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- 第二列 -->
+      <div class="image-gallery-item second-column {% unless section.blocks[1].settings.image %}no-image{% endunless %}">
+        {%- if section.blocks[1].settings.image -%}
+          <img
+            src="{{ section.blocks[1].settings.image | image_url: width: 868 }}"
+            alt="{{ section.blocks[1].settings.image.alt | default: 'Gallery Image' }}"
+            width="434"
+            height="600"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <div class="floating-content second-column">
+          {%- if section.blocks[1].settings.logo -%}
+            <img
+              src="{{ section.blocks[1].settings.logo | image_url: width: 600 }}"
+              alt="{{ section.blocks[1].settings.logo.alt | default: 'Logo' }}"
+              class="floating-logo"
+              loading="lazy"
+            >
+          {%- endif -%}
+          {%- if section.blocks[1].settings.title != blank -%}
+            <h3 class="floating-title">{{ section.blocks[1].settings.title }}</h3>
+          {%- endif -%}
+          {%- if section.blocks[1].settings.subtitle != blank -%}
+            <h4 class="floating-subtitle">{{ section.blocks[1].settings.subtitle }}</h4>
+          {%- endif -%}
+          {%- if section.blocks[1].settings.description != blank -%}
+            <p class="floating-desc">{{ section.blocks[1].settings.description }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- 第三列第一个图片 -->
+      <div class="image-gallery-item third-column {% unless section.blocks[2].settings.image %}no-image{% endunless %}">
+        {%- if section.blocks[2].settings.image -%}
+          <img
+            src="{{ section.blocks[2].settings.image | image_url: width: 892 }}"
+            alt="{{ section.blocks[2].settings.image.alt | default: 'Gallery Image' }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <div class="floating-content third-column">
+          {%- if section.blocks[2].settings.logo -%}
+            <img
+              src="{{ section.blocks[2].settings.logo | image_url: width: 600 }}"
+              alt="{{ section.blocks[2].settings.logo.alt | default: 'Logo' }}"
+              class="floating-logo"
+              loading="lazy"
+            >
+          {%- endif -%}
+          {%- if section.blocks[2].settings.title != blank -%}
+            <h3 class="floating-title">{{ section.blocks[2].settings.title }}</h3>
+          {%- endif -%}
+          {%- if section.blocks[2].settings.subtitle != blank -%}
+            <h4 class="floating-subtitle">{{ section.blocks[2].settings.subtitle }}</h4>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- 第三列第二个图片 -->
+      <div class="image-gallery-item third-column {% unless section.blocks[3].settings.image %}no-image{% endunless %}">
+        {%- if section.blocks[3].settings.image -%}
+          <img
+            src="{{ section.blocks[3].settings.image | image_url: width: 892 }}"
+            alt="{{ section.blocks[3].settings.image.alt | default: 'Gallery Image' }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <div class="floating-content third-column">
+          {%- if section.blocks[3].settings.logo -%}
+            <img
+              src="{{ section.blocks[3].settings.logo | image_url: width: 600 }}"
+              alt="{{ section.blocks[3].settings.logo.alt | default: 'Logo' }}"
+              class="floating-logo"
+              loading="lazy"
+            >
+          {%- endif -%}
+          {%- if section.blocks[3].settings.title != blank -%}
+            <h3 class="floating-title">{{ section.blocks[3].settings.title }}</h3>
+          {%- endif -%}
+          {%- if section.blocks[3].settings.subtitle != blank -%}
+            <h4 class="floating-subtitle">{{ section.blocks[3].settings.subtitle }}</h4>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "图片浮动文字",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "图片浮动文字"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_item",
+      "name": "图片项目",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "背景图片"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo图片"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "Rewards Program"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "副标题",
+          "default": "Segway Mileage Club"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "描述",
+          "default": "Earn miles while interacting or shopping with us"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "图片浮动文字",
+      "settings": {
+        "title": "图片浮动文字"
+      },
+      "blocks": [
+        {
+          "type": "gallery_item",
+          "settings": {
+            "title": "Rewards Program",
+            "subtitle": "Segway Mileage Club",
+            "description": "Earn miles while interacting or shopping with us"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "title": "Rewards Program",
+            "subtitle": "Segway Mileage Club",
+            "description": "Earn miles while interacting or shopping with us"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "title": "Rewards Program",
+            "subtitle": "Segway Mileage Club"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "title": "Rewards Program",
+            "subtitle": "Segway Mileage Club"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

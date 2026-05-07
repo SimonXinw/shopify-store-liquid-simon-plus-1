@@ -1,26 +1,135 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "footer": {
-      "type": "footer",
+    "footer-new": {
+      "type": "footer-new",
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+        "social_icon_link": "https://www.facebook.com/topfeel",
+        "social_icon_alt": "Social Media Icon",
+        "social_icon": "shopify://shop_images/socail_icons.webp",
+        "company_title": "Company",
+        "information_title": "Information",
+        "customer_service_title": "Customer Service",
+        "newsletter_title": "Subscribe To Our Newsletter",
+        "contact_title": "Pre-sales Support :",
+        "contact_email": "info@top-feel.com",
+        "vision_title": "Vision",
+        "vision_text": "Imagine: an early morning adventure through the bustling streets, effortlessly moving between the rhythms of the city. Say goodbye to the banal routine and embrace the excitement of the unknown. Join us on a journey that makes every commute an adventure!",
+        "payment_icon": "shopify://shop_images/footer_icons.webp"
+      },
+      "blocks": {
+        "company_link_1": {
+          "type": "company_link",
+          "settings": {
+            "text": "Topfeel Story",
+            "link": "/pages/topfeel-story"
+          }
+        },
+        "company_link_2": {
+          "type": "company_link",
+          "settings": {
+            "text": "Contact US",
+            "link": "/pages/contact-us"
+          }
+        },
+        "company_link_3": {
+          "type": "company_link",
+          "settings": {
+            "text": "Affiliates and Creators",
+            "link": "/pages/affiliates-and-creators"
+          }
+        },
+        "company_link_4": {
+          "type": "company_link",
+          "settings": {
+            "text": "Customer Reviews",
+            "link": "/pages/customer-reviews"
+          }
+        },
+        "information_link_1": {
+          "type": "information_link",
+          "settings": {
+            "text": "Topfeel Story",
+            "link": "/pages/topfeel-story"
+          }
+        },
+        "information_link_2": {
+          "type": "information_link",
+          "settings": {
+            "text": "Contact US",
+            "link": "/pages/contact-us"
+          }
+        },
+        "information_link_3": {
+          "type": "information_link",
+          "settings": {
+            "text": "Affiliates and Creators",
+            "link": "/pages/affiliates-and-creators"
+          }
+        },
+        "information_link_4": {
+          "type": "information_link",
+          "settings": {
+            "text": "Customer Reviews",
+            "link": "/pages/customer-reviews"
+          }
+        },
+        "customer_service_link_1": {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Topfeel Story",
+            "link": "/pages/topfeel-story"
+          }
+        },
+        "customer_service_link_2": {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Contact US",
+            "link": "/pages/contact-us"
+          }
+        },
+        "customer_service_link_3": {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Affiliates and Creators",
+            "link": "/pages/affiliates-and-creators"
+          }
+        },
+        "customer_service_link_4": {
+          "type": "customer_service_link",
+          "settings": {
+            "text": "Customer Reviews",
+            "link": "/pages/customer-reviews"
+          }
+        }
+      },
+      "block_order": [
+        "company_link_1",
+        "company_link_2",
+        "company_link_3",
+        "company_link_4",
+        "information_link_1",
+        "information_link_2",
+        "information_link_3",
+        "information_link_4",
+        "customer_service_link_1",
+        "customer_service_link_2",
+        "customer_service_link_3",
+        "customer_service_link_4"
+      ]
     }
   },
   "order": [
-    "footer"
+    "footer-new",
   ]
 }

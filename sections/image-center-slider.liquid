@@ -1,0 +1,667 @@
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #ImageCenterSlider-{{ section.id }} {
+    width: 100%;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+    position: relative;
+  }
+
+  @media screen and (max-width: 749px) {
+    #ImageCenterSlider-{{ section.id }} {
+      padding: 32px 0 32px 0;
+    }
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-title {
+    width: 90%;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0 auto 60px auto;
+    text-align: left;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .swiper {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .swiper-slide {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    width: 70% !important; /* 所有图片都是70%宽度 */
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .swiper-slide-active {
+    opacity: 1;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-image,
+  #ImageCenterSlider-{{ section.id }} .slider-video {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-video {
+    background: #000;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer {
+    position: absolute;
+    bottom: 80px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-radius: 12px;
+    padding: 20px 24px;
+    z-index: 6;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+    font-size: 20px;
+    line-height: 1.2;
+    color: white;
+    margin: 0 0 4px 0;
+    font-weight: 400;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+    font-size: 36px;
+    line-height: 1.2;
+    color: white;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-text-group.has-border {
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    padding-left: 24px;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+    font-size: 16px;
+    line-height: 1;
+    color: white;
+    background: #EC642C;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slide-footer-button:hover {
+    background: #D55A26;
+    transform: translateY(-1px);
+  }
+
+
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-button:hover:not(.swiper-button-disabled) {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-button.swiper-button-disabled {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-button.swiper-button-disabled .slider-nav-icon {
+    fill: rgba(236, 100, 44, 0.3);
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-prev {
+    left: 350px;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-next {
+    right: 350px;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-icon {
+    width: 24px;
+    height: 24px;
+    fill: rgba(236, 100, 44, 0.8);
+    transition: fill 0.3s ease;
+  }
+
+  #ImageCenterSlider-{{ section.id }} .slider-nav-button:hover:not(.swiper-button-disabled) .slider-nav-icon {
+    fill: #EC642C;
+  }
+
+  @media screen and (max-width: 1199px) {
+    #ImageCenterSlider-{{ section.id }} .slider-title {
+      font-size: 56px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-image,
+    #ImageCenterSlider-{{ section.id }} .slider-video {
+      height: 420px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-button {
+      width: 50px;
+      height: 50px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-prev {
+      left: 30px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-next {
+      right: 30px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer {
+      left: 30px;
+      right: 30px;
+      bottom: 30px;
+      padding: 16px 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+      font-size: 18px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+      font-size: 24px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+      font-size: 18px;
+      padding: 10px 12px;
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    #ImageCenterSlider-{{ section.id }} .slider-title {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-image,
+    #ImageCenterSlider-{{ section.id }} .slider-video {
+      height: 350px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .swiper-slide {
+      width: 80% !important;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-prev {
+      left: 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-next {
+      right: 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer {
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+      align-items: stretch;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-left {
+      justify-content: center;
+      gap: 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-text-group.has-border {
+      padding-left: 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+      font-size: 16px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+      font-size: 22px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+      font-size: 16px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    #ImageCenterSlider-{{ section.id }} .slider-title {
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-image,
+    #ImageCenterSlider-{{ section.id }} .slider-video {
+      height: auto;
+      border-radius: 15px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .swiper-slide {
+      width: 90% !important;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-button {
+      width: 40px;
+      height: 40px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-prev {
+      left: 32px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slider-nav-next {
+      right: 32px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      padding: 12px;
+      gap: 12px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-left {
+      gap: 16px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-text-group.has-border {
+      padding-left: 16px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-desc {
+      font-size: 14px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-title {
+      font-size: 18px;
+    }
+
+    #ImageCenterSlider-{{ section.id }} .slide-footer-button {
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="ImageCenterSlider-{{ section.id }}" class="section">
+  <div class="slider-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="slider-title homepage-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="slider-wrapper">
+        <div class="swiper mySlider-{{ section.id }}">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              <div class="swiper-slide" {{ block.shopify_attributes }}>
+                {%- if block.settings.media_type == 'video' and block.settings.video != blank -%}
+                  <div class="video-container">
+                    {{ block.settings.video | video_tag: 
+                       class: 'slider-video',
+                       autoplay: false,
+                       muted: false,
+                       controls: true,
+                       playsinline: true,
+                       preload: 'metadata'
+                    }}
+                  </div>
+                {%- elsif block.settings.image != blank -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1100 }}"
+                    alt="{{ block.settings.image.alt | default: block.settings.title | default: 'Slider Image' }}"
+                    class="slider-image"
+                    width="1100"
+                    height="600"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+                
+                {%- if block.settings.show_footer -%}
+                  <div class="slide-footer">
+                    <div class="slide-footer-left">
+                      {%- if block.settings.text_group_1_desc != blank or block.settings.text_group_1_title != blank -%}
+                        <div class="slide-footer-text-group">
+                          {%- if block.settings.text_group_1_desc != blank -%}
+                            <p class="slide-footer-desc">{{ block.settings.text_group_1_desc }}</p>
+                          {%- endif -%}
+                          {%- if block.settings.text_group_1_title != blank -%}
+                            <h3 class="slide-footer-title">{{ block.settings.text_group_1_title }}</h3>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                      
+                      {%- if block.settings.text_group_2_desc != blank or block.settings.text_group_2_title != blank -%}
+                        <div class="slide-footer-text-group{% if block.settings.text_group_1_desc != blank or block.settings.text_group_1_title != blank %} has-border{% endif %}">
+                          {%- if block.settings.text_group_2_desc != blank -%}
+                            <p class="slide-footer-desc">{{ block.settings.text_group_2_desc }}</p>
+                          {%- endif -%}
+                          {%- if block.settings.text_group_2_title != blank -%}
+                            <h3 class="slide-footer-title">{{ block.settings.text_group_2_title }}</h3>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    
+                    {%- if block.settings.button_text != blank -%}
+                      {%- if block.settings.button_link != blank -%}
+                        <a href="{{ block.settings.button_link }}" class="slide-footer-button">{{ block.settings.button_text }}</a>
+                      {%- else -%}
+                        <span class="slide-footer-button">{{ block.settings.button_text }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        {%- if section.blocks.size > 1 -%}
+          <button class="slider-nav-button slider-nav-prev swiper-button-prev-{{ section.id }}">
+            <svg class="slider-nav-icon" viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
+          <button class="slider-nav-button slider-nav-next swiper-button-next-{{ section.id }}">
+            <svg class="slider-nav-icon" viewBox="0 0 24 24">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+          </button>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 确保 Swiper 已加载
+    if (typeof Swiper !== 'undefined') {
+      const swiperInstance = new Swiper('.mySlider-{{ section.id }}', {
+        slidesPerView: 'auto',
+        spaceBetween: 60,
+        centeredSlides: true,
+        loop: false,
+        initialSlide: 1, // 从第二张图片开始
+        navigation: {
+          nextEl: '.swiper-button-next-{{ section.id }}',
+          prevEl: '.swiper-button-prev-{{ section.id }}',
+        },
+
+        breakpoints: {
+          320: {
+            slidesPerView: 'auto',
+            spaceBetween: 30,
+            centeredSlides: true,
+            initialSlide: 0, // 手机端从第一张开始
+          },
+          768: {
+            slidesPerView: 'auto',
+            spaceBetween: 120,
+            centeredSlides: true,
+            initialSlide: 1,
+          },
+          1024: {
+            slidesPerView: 'auto',
+            spaceBetween: 60,
+            centeredSlides: true,
+            initialSlide: 1,
+          },
+        },
+        on: {
+          init: function () {
+            console.log('Image Center Slider initialized for section {{ section.id }}');
+          },
+          slideChange: function () {
+            // 切换幻灯片时暂停所有视频
+            pauseAllVideos();
+          },
+          error: function (error) {
+            console.error('Swiper error:', error);
+          },
+        },
+      });
+
+
+      // 暂停所有视频
+      function pauseAllVideos() {
+        const videos = document.querySelectorAll('#ImageCenterSlider-{{ section.id }} video');
+        videos.forEach(video => {
+          video.pause();
+        });
+      }
+      
+    } else {
+      console.error('Swiper is not loaded');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "图片轮播 Image Center Slider",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "Inspiring Moments"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide_item",
+      "name": "轮播图片",
+      "settings": [
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "媒体类型",
+          "options": [
+            {
+              "value": "image",
+              "label": "图片"
+            },
+            {
+              "value": "video",
+              "label": "视频"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "轮播图片",
+          "info": "仅当选择图片时使用"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "轮播视频",
+          "info": "仅当选择视频时使用"
+        },
+        {
+          "type": "text",
+          "id": "title", 
+          "label": "图片标题（用于alt属性）"
+        },
+        {
+          "type": "header",
+          "content": "Footer 信息"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_footer",
+          "label": "显示Footer信息",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "text_group_1_desc",
+          "label": "第一组文本 - 描述",
+          "info": "第一组文本的描述文字（20px）"
+        },
+        {
+          "type": "text",
+          "id": "text_group_1_title",
+          "label": "第一组文本 - 标题",
+          "info": "第一组文本的标题文字（26px）"
+        },
+        {
+          "type": "text",
+          "id": "text_group_2_desc",
+          "label": "第二组文本 - 描述",
+          "info": "第二组文本的描述文字（20px）"
+        },
+        {
+          "type": "text",
+          "id": "text_group_2_title",
+          "label": "第二组文本 - 标题",
+          "info": "第二组文本的标题文字（26px）"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "按钮文案",
+          "info": "按钮显示的文字"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "按钮链接",
+          "info": "点击按钮跳转的链接"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "图片轮播 Image Center Slider",
+      "settings": {
+        "title": "Inspiring Moments"
+      },
+      "blocks": [
+        {
+          "type": "slide_item"
+        },
+        {
+          "type": "slide_item"
+        },
+        {
+          "type": "slide_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

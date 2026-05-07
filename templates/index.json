@@ -1,75 +1,489 @@
-{
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "image-banner-new": {
+      "type": "image-banner-new",
+      "settings": {
+        "image": "shopify://shop_images/homepage_banner_1.webp",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "title": "KINGSONG F22",
+        "title_corner_badge": "Pro",
+        "sub_title": "Where Power Meets Comfort",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "product_services": {
+      "type": "product-services",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "service_item_TiBAyB": {
+          "type": "service_item",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "image": "shopify://shop_images/homepage_service_icon_1.webp",
+            "title": "1-Year Warranty",
+            "desc": "Buy with confidence"
           }
         },
-        "button": {
-          "type": "buttons",
+        "service_item_KeNXGb": {
+          "type": "service_item",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "image": "shopify://shop_images/homepage_service_icon_2.webp",
+            "title": "Free shipping",
+            "desc": "Ship to the continental U.S."
+          }
+        },
+        "service_item_mYTHmG": {
+          "type": "service_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_service_icon_3.webp",
+            "title": "Secure Payment",
+            "desc": "Paypal & Credit Card Payment"
+          }
+        },
+        "service_item_gwXzLz": {
+          "type": "service_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_service_icon_4.webp",
+            "title": "Instant Support",
+            "desc": "Email & Phone Service"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "service_item_TiBAyB",
+        "service_item_KeNXGb",
+        "service_item_mYTHmG",
+        "service_item_gwXzLz"
+      ],
+      "settings": {}
+    },
+    "product-list": {
+      "type": "product-list",
+      "blocks": {
+        "feature_jGdPyM": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/product_card_icon_1.webp",
+            "title": "5000 Peak",
+            "description": "High-Power Motor"
+          }
+        },
+        "feature_CngYUB": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/product_card_icon_2.webp",
+            "title": "5000 Peak",
+            "description": "High-Power Motor"
+          }
+        },
+        "feature_AAyC6A": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/product_card_icon_3.webp",
+            "title": "5000 Peak",
+            "description": "High-Power Motor"
+          }
+        },
+        "feature_kXxYMe": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/product_card_icon_4.webp",
+            "title": "5000 Peak",
+            "description": "High-Power Motor"
+          }
+        }
+      },
+      "block_order": [
+        "feature_jGdPyM",
+        "feature_CngYUB",
+        "feature_AAyC6A",
+        "feature_kXxYMe"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "title": "Bestsellers",
+        "button_1_text": "ELECTRIC UNICYCLE",
+        "button_1_url": "shopify://collections/14d",
+        "button_2_text": "ELECTRIC SCOOTER",
+        "button_2_url": "shopify://collections",
+        "products": [
+          "kingsong-14d",
+          "kingsong-16s",
+          "kingsong-16x",
+          "kingsong-f18",
+          "kingsong-f22-pro"
+        ],
+        "products_to_show": 6,
+        "review_text": "400 reviews",
+        "shop_button_text": "Shop Now",
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "logos": {
+      "type": "logos",
+      "blocks": {
+        "logo_item_1": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/media_report_1.webp"
+          }
+        },
+        "logo_item_2": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/media_report_2.webp"
+          }
+        },
+        "logo_item_3": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/media_report_3.webp"
+          }
+        },
+        "logo_item_4": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/media_report_4.webp"
+          }
+        }
+      },
+      "block_order": [
+        "logo_item_1",
+        "logo_item_2",
+        "logo_item_3",
+        "logo_item_4"
+      ],
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "title": "Media Report",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
+      }
+    },
+    "image-center-slider": {
+      "type": "image-center-slider",
+      "blocks": {
+        "slide_item_1": {
+          "type": "slide_item",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/moments_banner_1.webp",
+            "title": "",
+            "show_footer": false,
+            "text_group_1_desc": "",
+            "text_group_1_title": "",
+            "text_group_2_desc": "",
+            "text_group_2_title": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "slide_item_2": {
+          "type": "slide_item",
+          "settings": {
+            "media_type": "video",
+            "image": "shopify://shop_images/moments_banner_1.webp",
+            "video": "shopify://files/videos/swiper_banner_video_1.mp4",
+            "title": "",
+            "show_footer": true,
+            "text_group_1_desc": "High-Power Motor",
+            "text_group_1_title": "5000 Peak",
+            "text_group_2_desc": "High-Power Motor",
+            "text_group_2_title": "5000 Peak",
+            "button_text": "LEARN MORE",
+            "button_link": "shopify://products/kingsong-16x"
+          }
+        },
+        "slide_item_3": {
+          "type": "slide_item",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/moments_banner_1.webp",
+            "title": "",
+            "show_footer": false,
+            "text_group_1_desc": "",
+            "text_group_1_title": "",
+            "text_group_2_desc": "",
+            "text_group_2_title": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "slide_item_4": {
+          "type": "slide_item",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/moments_banner_1.webp",
+            "title": "",
+            "show_footer": false,
+            "text_group_1_desc": "2",
+            "text_group_1_title": "打发的",
+            "text_group_2_desc": "",
+            "text_group_2_title": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_item_1",
+        "slide_item_2",
+        "slide_item_3",
+        "slide_item_4"
+      ],
+      "settings": {
+        "title": "Inspiring Moments",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
+      }
+    },
+    "image-with-features": {
+      "type": "image-with-features",
+      "blocks": {
+        "feature_item_1": {
+          "type": "feature",
+          "settings": {
+            "number": "100+",
+            "description": "Selling to Countriesand Regions"
+          }
+        },
+        "feature_item_2": {
+          "type": "feature",
+          "settings": {
+            "number": "200+",
+            "description": "Global Electric Scooter Sales"
+          }
+        },
+        "feature_item_3": {
+          "type": "feature",
+          "settings": {
+            "number": "33,322,33+",
+            "description": "Electric Scooter Patent"
+          }
+        },
+        "feature_item_4": {
+          "type": "feature",
+          "settings": {
+            "number": "400+",
+            "description": "Global Electric Scooter Sales"
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_1",
+        "feature_item_2",
+        "feature_item_3",
+        "feature_item_4"
+      ],
+      "settings": {
+        "title": "",
+        "image": "shopify://shop_images/image_with_text_1.webp",
+        "main_title": "Ride Further Together",
+        "layout": "horizontal",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
+      }
+    },
+    "user-reviews-slider": {
+      "type": "user-reviews-slider",
+      "blocks": {
+        "review_item_1": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "Bought this wheel as a trainer to teachothers to ride. Compared to learning on theS18 this wheel is sooo much better. Got mydaughter riding within 30 minutes and havethree other people l am training. Great wheelthat works incredibly well.！",
+            "user_avatar": "shopify://shop_images/user_avatar_1.webp",
+            "user_name": "Pat Outdoors",
+            "rating": 5
+          }
+        },
+        "review_item_2": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "Bought this wheel as a trainer to teachothers to ride. Compared to learning on theS18 this wheel is sooo much better. Got mydaughter riding within 30 minutes and havethree other people l am training. Great wheelthat works incredibly well.",
+            "user_avatar": "shopify://shop_images/user_avatar_2.webp",
+            "user_name": "Pat Outdoors",
+            "rating": 5
+          }
+        },
+        "review_item_3": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "Bought this wheel as a trainer to teachothers to ride. Compared to learning on theS18 this wheel is sooo much better. Got mydaughter riding within 30 minutes and havethree other people l am training. Great wheelthat works incredibly well.",
+            "user_avatar": "shopify://shop_images/user_avatar_3.webp",
+            "user_name": "Pawel Urbanik",
+            "rating": 4
+          }
+        },
+        "review_item_6Echei": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "这是一个很棒的产品，我非常满意！",
+            "user_name": "张三",
+            "rating": 5
+          }
+        },
+        "review_item_mkRKwY": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "这是一个很棒的产品，我非常满意！",
+            "user_name": "张三",
+            "rating": 5
+          }
+        },
+        "review_item_Ufp4zh": {
+          "type": "review_item",
+          "settings": {
+            "review_text": "这是一个很棒的产品，我非常满意！",
+            "user_name": "张三",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "review_item_1",
+        "review_item_2",
+        "review_item_3",
+        "review_item_6Echei",
+        "review_item_mkRKwY",
+        "review_item_Ufp4zh"
+      ],
+      "settings": {
+        "title": "What Our Customers Are Saying?",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
+      }
+    },
+    "image-gallery-overla": {
+      "type": "image-gallery-overla",
+      "blocks": {
+        "gallery_item_1": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_gallary_1.webp",
+            "title": "Rewards Program",
+            "subtitle": "Segway Mileage Club",
+            "description": "Earn miles while interacting or shopping with us"
+          }
+        },
+        "gallery_item_2": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_gallary_2.webp",
+            "title": "Welcome Gift",
+            "subtitle": "Welcome gift for new Subscribers",
+            "description": "New to Segway? Receive a special gift designed to power up your first ride."
+          }
+        },
+        "gallery_item_3": {
+          "type": "gallery_item",
+          "settings": {
+            "logo": "shopify://shop_images/homepage_gallary_logo_1.webp",
+            "title": "Buy Now, Pay Later",
+            "subtitle": "Buy now, pay later with Affirm",
+            "description": "Earn miles while interacting or shopping with us"
+          }
+        },
+        "gallery_item_4": {
+          "type": "gallery_item",
+          "settings": {
+            "logo": "shopify://shop_images/homepage_gallary_logo_2.webp",
+            "title": "Free Shipping",
+            "subtitle": "Segway pays your shipping fee with orders over $99",
+            "description": "Earn miles while interacting or shopping with us"
+          }
+        }
+      },
+      "block_order": [
+        "gallery_item_1",
+        "gallery_item_2",
+        "gallery_item_3",
+        "gallery_item_4"
+      ],
+      "settings": {
+        "title": "Image Gallery Overlay",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
+      }
+    },
+    "image-with-info": {
+      "type": "image-with-info",
+      "blocks": {
+        "news_item_1": {
+          "type": "news_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_news_1.webp",
+            "title": "What Is a Suspension Electric Unicycle?",
+            "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
+            "date": "April 10 2025"
+          }
+        },
+        "news_item_2": {
+          "type": "news_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_news_2.webp",
+            "title": "What Is a Suspension Electric Unicycle?",
+            "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
+            "date": "April 10 2025"
+          }
+        },
+        "news_item_3": {
+          "type": "news_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_news_3.webp",
+            "title": "What Is a Suspension Electric Unicycle?",
+            "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
+            "date": "April 10 2025"
+          }
+        },
+        "news_item_4": {
+          "type": "news_item",
+          "settings": {
+            "image": "shopify://shop_images/homepage_news_4.webp",
+            "title": "What Is a Suspension Electric Unicycle?",
+            "description": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed.",
+            "date": "April 10 2025"
+          }
+        }
+      },
+      "block_order": [
+        "news_item_1",
+        "news_item_2",
+        "news_item_3",
+        "news_item_4"
+      ],
+      "settings": {
+        "title": "News",
+        "button_text": "View All Posts",
+        "button_url": "",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "image-banner-new",
+    "product_services",
+    "product-list",
+    "logos",
+    "image-center-slider",
+    "image-with-features",
+    "user-reviews-slider",
+    "image-gallery-overla",
+    "image-with-info"
   ]
 }

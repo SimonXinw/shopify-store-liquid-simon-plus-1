@@ -1,0 +1,192 @@
+{%- style -%}
+  #Logos-{{ section.id }} {
+    width: 100%;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #Logos-{{ section.id }} {
+      padding: 32px 0 32px 0;
+    }
+  }
+
+  #Logos-{{ section.id }} .logos-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #Logos-{{ section.id }} .logos-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0 0 60px 0;
+    text-align: left;
+  }
+
+  #Logos-{{ section.id }} .logos-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  #Logos-{{ section.id }} .logos-item {
+    flex-shrink: 0;
+  }
+
+  #Logos-{{ section.id }} .logos-item-image {
+    width: 285px;
+    height: 105px;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media screen and (max-width: 1199px) {
+    #Logos-{{ section.id }} .logos-title {
+      font-size: 56px;
+    }
+
+    #Logos-{{ section.id }} .logos-item-image {
+      width: 240px;
+      height: 88px;
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    #Logos-{{ section.id }} .logos-title {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    #Logos-{{ section.id }} .logos-item-image {
+      width: 200px;
+      height: 74px;
+    }
+
+    #Logos-{{ section.id }} .logos-list {
+      gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    #Logos-{{ section.id }} .logos-title {
+      font-size: 36px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    #Logos-{{ section.id }} .logos-item-image {
+      width: 120px;
+      height: 45px;
+    }
+
+    #Logos-{{ section.id }} .logos-list {
+      gap: 20px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="Logos-{{ section.id }}" class="section">
+  <div class="logos-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="logos-title homepage-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="logos-list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.image != blank -%}
+            <div class="logos-item" {{ block.shopify_attributes }}>
+              <img
+                src="{{ block.settings.image | image_url: width: 570 }}"
+                alt="{{ block.settings.image.alt | default: 'Logo' }}"
+                class="logos-item-image"
+                width="285"
+                height="105"
+                loading="lazy"
+              >
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "媒体报道 Logos",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "Media Report"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo_item",
+      "name": "Logo 图片",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo 图片"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "媒体报道 Logos",
+      "settings": {
+        "title": "Media Report"
+      },
+      "blocks": [
+        {
+          "type": "logo_item"
+        },
+        {
+          "type": "logo_item"
+        },
+        {
+          "type": "logo_item"
+        },
+        {
+          "type": "logo_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

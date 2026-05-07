@@ -1,0 +1,425 @@
+{%- style -%}
+  #NewsList-{{ section.id }} {
+    width: 100%;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #NewsList-{{ section.id }} {
+      padding: 32px 0 32px 0;
+    }
+  }
+
+  #NewsList-{{ section.id }} .news-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #NewsList-{{ section.id }} .news-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  #NewsList-{{ section.id }} .news-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0;
+  }
+
+  #NewsList-{{ section.id }} .news-button {
+    background: #EC642C;
+    border-radius: 10px;
+    padding: 15px 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #NewsList-{{ section.id }} .news-button-text {
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+  }
+
+  #NewsList-{{ section.id }} .news-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  #NewsList-{{ section.id }} .news-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #NewsList-{{ section.id }} .news-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #NewsList-{{ section.id }} .news-item-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    display: block;
+    border-radius: 10px;
+  }
+
+  #NewsList-{{ section.id }} .news-item-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0 0 10px 0;
+  }
+
+  #NewsList-{{ section.id }} .news-item-desc {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0 0 10px 0;
+    flex-grow: 1;
+  }
+
+  #NewsList-{{ section.id }} .news-item-date {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #EC642C;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 1199px) {
+    #NewsList-{{ section.id }} .news-title {
+      font-size: 56px;
+    }
+
+    #NewsList-{{ section.id }} .news-button-text {
+      font-size: 26px;
+    }
+
+    #NewsList-{{ section.id }} .news-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    #NewsList-{{ section.id }} .news-title {
+      font-size: 48px;
+    }
+
+    #NewsList-{{ section.id }} .news-button-text {
+      font-size: 22px;
+    }
+
+    #NewsList-{{ section.id }} .news-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    #NewsList-{{ section.id }} .news-item-image {
+      height: 250px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    #NewsList-{{ section.id }} .news-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    #NewsList-{{ section.id }} .news-title {
+      font-size: 36px;
+    }
+
+    #NewsList-{{ section.id }} .news-button-text {
+      font-size: 18px;
+    }
+
+    #NewsList-{{ section.id }} .news-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    #NewsList-{{ section.id }} .news-item-image {
+      height: 200px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign blog = blogs[section.settings.blog]
+  assign articles_limit = section.settings.posts_to_show | default: 4
+  assign show_excerpt = section.settings.show_excerpt
+  assign excerpt_length = section.settings.excerpt_length | default: 150
+-%}
+
+<div id="NewsList-{{ section.id }}" class="section">
+  <div class="news-container">
+    <div class="news-header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="news-title homepage-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank -%}
+        {%- if section.settings.button_url != blank -%}
+          <a href="{{ section.settings.button_url }}" class="news-button">
+            <span class="news-button-text">{{ section.settings.button_text }}</span>
+          </a>
+        {%- elsif blog -%}
+          <a href="{{ blog.url }}" class="news-button">
+            <span class="news-button-text">{{ section.settings.button_text }}</span>
+          </a>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    {%- if blog and blog.articles.size > 0 -%}
+      <div class="news-grid">
+        {%- for article in blog.articles limit: articles_limit -%}
+          <div class="news-item">
+            <a href="{{ article.url }}" class="news-item-link">
+              {%- if article.image -%}
+                <img
+                  src="{{ article.image | image_url: width: 600 }}"
+                  alt="{{ article.image.alt | default: article.title }}"
+                  class="news-item-image"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="news-item-image" style="background-color: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #999;">
+                  {{ 'general.placeholders.image' | t }}
+                </div>
+              {%- endif -%}
+
+              <h3 class="news-item-title">{{ article.title }}</h3>
+
+              {%- if show_excerpt and article.excerpt != blank -%}
+                <p class="news-item-desc">
+                  {%- if article.excerpt.size > excerpt_length -%}
+                    {{ article.excerpt | truncate: excerpt_length }}
+                  {%- else -%}
+                    {{ article.excerpt }}
+                  {%- endif -%}
+                </p>
+              {%- elsif show_excerpt and article.content != blank -%}
+                <p class="news-item-desc">
+                  {{ article.content | strip_html | truncate: excerpt_length }}
+                </p>
+              {%- endif -%}
+
+              <p class="news-item-date">{{ article.published_at | date: '%B %d, %Y' }}</p>
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- elsif section.blocks.size > 0 -%}
+      <div class="news-grid">
+        {%- for block in section.blocks limit: 4 -%}
+          <div class="news-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 600 }}"
+                alt="{{ block.settings.image.alt | default: 'News Image' }}"
+                class="news-item-image"
+                width="300"
+                height="300"
+                loading="lazy"
+              >
+            {%- endif -%}
+
+            {%- if block.settings.title != blank -%}
+              <h3 class="news-item-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.description != blank -%}
+              <p class="news-item-desc">{{ block.settings.description }}</p>
+            {%- endif -%}
+
+            {%- if block.settings.date != blank -%}
+              <p class="news-item-date">{{ block.settings.date }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div style="text-align: center; padding: 40px 0; color: #999;">
+        {%- if section.settings.blog -%}
+          {{ 'blog.general.no_articles' | t }}
+        {%- else -%}
+          请选择一个博客或添加新闻项目
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "博客文章列表",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "Latest News"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "选择博客"
+    },
+    {
+      "type": "range",
+      "id": "posts_to_show",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "显示文章数量",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "显示文章摘要",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "excerpt_length",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "字符",
+      "label": "摘要长度",
+      "default": 150
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "按钮文字",
+      "default": "View All Posts"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "按钮链接",
+      "info": "如果不填写，将自动链接到选择的博客页面"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "news_item",
+      "name": "新闻项目",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "新闻图片"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "新闻标题",
+          "default": "What Is a Suspension Electric Unicycle?"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "新闻描述",
+          "default": "It's cool. All EUCs are sensor-responsive. Imagine the feeling of someone silently gliding past you at speed."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "发布日期",
+          "default": "April 10 2025"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "博客文章列表",
+      "settings": {
+        "title": "Latest News",
+        "button_text": "View All Posts",
+        "posts_to_show": 4,
+        "show_excerpt": true,
+        "excerpt_length": 150
+      },
+      "blocks": [
+        {
+          "type": "news_item"
+        },
+        {
+          "type": "news_item"
+        },
+        {
+          "type": "news_item"
+        },
+        {
+          "type": "news_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

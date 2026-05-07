@@ -1,12 +1,51 @@
+// themeKit 开发模式
+
 ```bash
 # 线上模板
-theme get --password=shptka_a8bc1f303349ec792567bf0fd9d8d69c --store="simon2-xinwang.myshopify.com" --themeid=152928092389
+theme get --password=shptka_a8bc1f303349ec792567bf0fd9d8d69c --store="simon2-xinwang.myshopify.com" --themeid=152928911589
 
-# 监听保存
+# shopify 线上直接更改，自动同步
+theme watch --allow-live 
+
+# 监听保存，本地修改，自动同步
 theme watch
 
 # git 提交清除无需提交文件
 git add --renormalize .
+xinwang1997
+```;
+
+
+// 店铺账号
+```bash
+theme token：shptka_5490b89fd919fb2e13f1c8e1159174e7
+域名：simon-plus-xinwang.myshopify.com
+
+
+
+```
+// 店铺账号 2
+```bash
+域名：新店铺账号: uv7pvf-et.myshopify.com
+```
+
+// 2. shopify cli 开发模式
+```bash
+# 安装
+npm install -g @shopify/cli@latest
+
+# 开发已经存在的指定主题 id
+shopify theme dev -t 180717093177 --store=uv7pvf-et.myshopify.com
+
+# 如果需要输入密码
+shopify 没有付费的时候，是密码限制访问，密码在-在线商店-偏好设置-密码-默认-yeetse
+这个项目密码是： mahmug
+
+# 通过push命令将本地开发主题上传到商店，第一次上传不希望将模板作为publish（live）模板可以添加标识--unpublished实现
+shopify theme push --unpublished
+
+# 退出登录
+shopify auth logout
 
 ```;
 
@@ -15,7 +54,7 @@ fetch("/cart/clear.js", {
   method: "POST",
   headers: {
     Accept: "application/json",
-  },  
+  },
 })
   .then((res) => res.json())
   .then((data) => {

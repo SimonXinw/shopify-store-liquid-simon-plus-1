@@ -1,0 +1,659 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (max-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+  }
+
+  .product-list {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .product-list__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: {{ 40 | times: 0.9 }}px;
+  }
+
+  .product-list__title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+  }
+
+  .product-list__buttons {
+    display: flex;
+    gap: {{ 20 | times: 0.9 }}px;
+  }
+
+  .product-list__button {
+    padding:10px 20px;
+    border-radius: {{ 10 | times: 0.9 }}px;
+    border: 1px solid transparent;
+    background-color: #EC642C;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .product-list__slider {
+    position: relative;
+  }
+
+  .product-list__card {
+    display: flex;
+    flex-direction: column;
+    gap: {{ 20 | times: 0.9 }}px;
+  }
+
+  .product-list__image {
+    width: 100%;
+    height: 700px;
+    border-radius: {{ 20 | times: 0.9 }}px;
+    object-fit: cover;
+  }
+
+  .product-list__details {
+    display: flex;
+    flex-direction: column;
+    gap: {{ 15 | times: 0.9 }}px;
+  }
+
+  .product-list__product-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+  }
+
+  .product-list__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .product-list__rating {
+    display: flex;
+    align-items: center;
+    gap: {{ 8 | times: 0.9 }}px;
+  }
+
+  .product-list__stars {
+    display: flex;
+    gap: {{ 2 | times: 0.9 }}px;
+  }
+
+  .product-list__star {
+    width: {{ 30 | times: 0.9 }}px;
+    height: {{ 30 | times: 0.9 }}px;
+    fill: #ffc107;
+  }
+
+  .product-list__review-text {
+    font-family: Inter, sans-serif;
+    font-size: {{ 22 | times: 0.9 }}px;
+    color: #666;
+  }
+
+  .product-list__variants {
+    display: flex;
+    gap: 8px;
+    margin-right: 30px
+  }
+
+  .product-list__variant {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .product-list__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ 10 | times: 0.9 }}px;
+  }
+
+  .product-list__feature {
+    display: flex;
+    align-items: center;
+    gap: {{ 8 | times: 0.9 }}px;
+    width: calc(50% - {{ 5 | times: 0.9 }}px);
+  }
+
+  .product-list__feature-icon {
+    width: {{ 46 | times: 0.9 }}px;
+    height: {{ 46 | times: 0.9 }}px;
+    flex-shrink: 0;
+  }
+
+  .product-list__feature-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-list__feature-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: {{ 20 | times: 0.9 }}px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+  }
+
+  .product-list__feature-desc {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: {{ 16 | times: 0.9 }}px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+  }
+
+  .product-list__price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+
+  }
+
+  .product-list__price-inner {
+    display: flex;
+    align-items: center;
+    gap: {{ 15 | times: 0.9 }}px;
+  }
+
+  .product-list__final-price {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FF0808;
+  }
+
+  .product-list__original-price {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: {{ 20 | times: 0.9 }}px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: line-through;
+    color: #000;
+  }
+
+  .product-list__shop-button {
+    width: {{ 120 | times: 0.9 }}px;
+    height: {{ 40 | times: 0.9 }}px;
+    border-radius: {{ 10 | times: 0.9 }}px;
+    background-color: #EC642C;
+    border: none;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: {{ 20 | times: 0.9 }}px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-list__pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: {{ 10 | times: 0.9 }}px;
+    margin-top: 40px;
+  }
+
+  .product-list__nav-button {
+    width: {{ 60 | times: 0.9 }}px;
+    height: {{ 60 | times: 0.9 }}px;
+    background: #EC642C;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .product-list__nav-button:hover:not(.swiper-button-disabled) {
+    background: #ff7f3f; /* 鼠标悬停时的高亮色 */
+  }
+
+  .product-list__nav-button.swiper-button-disabled {
+    background: #F5BFA6; /* 禁用时的浅色背景 */
+    cursor: not-allowed;
+  }
+
+  .product-list__nav-icon {
+    width: {{ 40 | times: 0.9 }}px;
+    height: {{ 40 | times: 0.9 }}px;
+    fill: #fff;
+  }
+
+  .swiper {
+    width: 100%;
+    height: auto;
+  }
+
+  .swiper-slide {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  @media screen and (max-width: 749px) {
+
+    .product-list__image {
+      height: auto;
+    }
+
+    .product-list__header {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .product-list__title {
+      font-size: 36px;
+    }
+    .product-list__buttons {
+      gap: 12px;
+    }
+    .product-list__button {
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 6px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign products_to_display = 0
+
+  for product in section.settings.products
+    assign products_to_display = products_to_display | plus: 1
+  endfor
+
+  if products_to_display > section.settings.products_to_show
+    assign products_to_display = section.settings.products_to_show
+  endif
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="product-list section-{{ section.id }}-padding">
+    {%- if section.settings.title != blank
+      or section.settings.button_1_text != blank
+      or section.settings.button_2_text != blank
+    -%}
+      <div class="product-list__header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="product-list__title homepage-title">
+            {{ section.settings.title }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.button_1_text != blank or section.settings.button_2_text != blank -%}
+          <div class="product-list__buttons">
+            {%- if section.settings.button_1_text != blank -%}
+              <a href="{{ section.settings.button_1_url | default: '#' }}" class="product-list__button">
+                {{ section.settings.button_1_text }}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.button_2_text != blank -%}
+              <a href="{{ section.settings.button_2_url | default: '#' }}" class="product-list__button">
+                {{ section.settings.button_2_text }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="product-list__slider">
+      <div class="swiper mySwiper-{{ section.id }}" id="swiper-{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- for product in section.settings.products limit: section.settings.products_to_show -%}
+            <div class="swiper-slide">
+              <div class="product-list__card">
+                {%- if product.featured_image -%}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 585 }}"
+                    alt="{{ product.featured_image.alt | default: product.title }}"
+                    class="product-list__image"
+                  >
+                {%- endif -%}
+
+                <div class="product-list__details">
+                  {%- if product.title -%}
+                    <h3 class="product-list__product-title">{{ product.title }}</h3>
+                  {%- endif -%}
+
+                  <div class="product-list__row">
+                    <div class="product-list__rating">
+                      <div class="product-list__stars">
+                        {%- for i in (1..5) -%}
+                          <svg class="product-list__star" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                        {%- endfor -%}
+                      </div>
+                      <span class="product-list__review-text">
+                        {{- section.settings.review_text | default: '400 reviews' -}}
+                      </span>
+                    </div>
+                    {%- if product.variants.size > 1 -%}
+                      <div class="product-list__variants">
+                        {%- for variant in product.variants limit: 5 -%}
+                          {%- if product.options contains 'Color' -%}
+                            <div
+                              class="product-list__variant"
+                              style="background-color: {{ variant.option1 | downcase }}"
+                            >
+                              &nbsp;
+                            </div>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                  {%- if section.blocks.size > 0 -%}
+                    <div class="product-list__features">
+                      {%- for block in section.blocks limit: 4 -%}
+                        {%- case block.type -%}
+                          {%- when 'feature' -%}
+                            <div class="product-list__feature">
+                              {%- if block.settings.icon -%}
+                                <img
+                                  width="42"
+                                  height="42"
+                                  src="{{ block.settings.icon | image_url: width: 46 }}"
+                                  alt="{{ block.settings.title }}"
+                                  class="product-list__feature-icon"
+                                >
+                              {%- endif -%}
+                              <div class="product-list__feature-text">
+                                {%- if block.settings.title -%}
+                                  <span class="product-list__feature-title">{{ block.settings.title }}</span>
+                                {%- endif -%}
+                                {%- if block.settings.description -%}
+                                  <span class="product-list__feature-desc">{{ block.settings.description }}</span>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                        {%- endcase -%}
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+
+                  <div class="product-list__price-row">
+                    <span class="product-list__price-inner">
+                      {%- if product.price -%}
+                        <span class="product-list__final-price">
+                          {{ product.price | money }}
+                        </span>
+                      {%- endif -%}
+
+                      {%- if product.compare_at_price and product.compare_at_price > product.price -%}
+                        <span class="product-list__original-price">
+                          {{ product.compare_at_price | money }}
+                        </span>
+                      {%- endif -%}
+                    </span>
+
+                    <a href="{{ product.url }}" class="product-list__shop-button">
+                      {{ section.settings.shop_button_text | default: 'Shop Now' }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        {%- if products_to_display > 3 -%}
+          <div class="product-list__pagination">
+            <button class="product-list__nav-button swiper-button-prev-{{ section.id }}">
+              <svg class="product-list__nav-icon" viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+              </svg>
+            </button>
+            <button class="product-list__nav-button swiper-button-next-{{ section.id }}">
+              <svg class="product-list__nav-icon" viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof Swiper !== 'undefined') {
+      // 使用安全的变量名
+      const swiperInstance = new Swiper('.mySwiper-{{ section.id }}', {
+        slidesPerView: 3,
+        spaceBetween: 80,
+        pagination: {
+          el: '.swiper-pagination-{{ section.id }}',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next-{{ section.id }}',
+          prevEl: '.swiper-button-prev-{{ section.id }}',
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 160,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 80,
+          },
+        },
+        // 确保循环和自动高度
+        loop: false,
+        autoHeight: false,
+        // 添加调试
+        on: {
+          init: function () {
+            console.log('Swiper initialized for section {{ section.id }}');
+          },
+          error: function (error) {
+            console.error('Swiper error:', error);
+          },
+        },
+      });
+    } else {
+      console.error('Swiper is not loaded');
+    }
+
+    // 储存变量
+
+    // 选择器带上 section.id，避免冲突
+    const productsData = {{ section.settings.products | json }};
+
+    const cardEles = document.querySelectorAll(`#swiper-{{ section.id }} .product-list__card`);
+
+    cardEles?.forEach((cardEle, idx) => {
+      const product = productsData[idx];
+      cardEle.product = product
+
+    });
+
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product List",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Featured Products",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "button_1_url",
+      "label": "Button 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_2_url",
+      "label": "Button 2 URL"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "limit": 12
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "label": "Products to show"
+    },
+    {
+      "type": "text",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "400 reviews"
+    },
+    {
+      "type": "text",
+      "id": "shop_button_text",
+      "label": "Shop button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product List"
+    }
+  ]
+}
+{% endschema %}

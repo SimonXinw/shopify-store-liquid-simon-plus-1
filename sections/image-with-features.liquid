@@ -1,0 +1,353 @@
+{%- style -%}
+  #ImageWithFeatures-{{ section.id }} {
+    width: 100%;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #ImageWithFeatures-{{ section.id }} {
+      padding: 32px 0 32px 0;
+    }
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0 0 60px 0;
+    text-align: center;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  #ImageWithFeatures-{{ section.id }}.layout-vertical .image-with-features-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-image {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 25px 0;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-main-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #000;
+    margin: 0 0 40px 0;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 80px;
+    column-gap: 50px;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-feature-number {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #EC642C;
+    margin: 0 0 10px 0;
+  }
+
+  #ImageWithFeatures-{{ section.id }} .image-with-features-feature-desc {
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 35px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #000;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 1199px) {
+    #ImageWithFeatures-{{ section.id }} .image-with-features-title {
+      font-size: 56px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-main-title {
+      font-size: 56px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-feature-number {
+      font-size: 56px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-feature-desc {
+      font-size: 30px;
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    #ImageWithFeatures-{{ section.id }} .image-with-features-title {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-main-title {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-content {
+      gap: 40px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-feature-number {
+      font-size: 48px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-feature-desc {
+      font-size: 26px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-features {
+      gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    #ImageWithFeatures-{{ section.id }} .image-with-features-title {
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-main-title {
+      font-size: 36px;
+      margin-bottom: 32px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-content {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-feature-number {
+      font-size: 24px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-feature-desc {
+      font-size: 16px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-features {
+      gap: 20px;
+    }
+
+    #ImageWithFeatures-{{ section.id }} .image-with-features-feature {
+      gap: 20px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="ImageWithFeatures-{{ section.id }}" class="image-with-features section layout-{{ section.settings.layout }}">
+  <div class="image-with-features-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="image-with-features-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="image-with-features-content">
+      {%- if section.settings.image != blank -%}
+        <div class="image-with-features-image-wrapper">
+          <img
+            src="{{ section.settings.image | image_url: width: 800 }}"
+            alt="{{ section.settings.image.alt | default: 'Feature Image' }}"
+            class="image-with-features-image"
+            width="800"
+            height="600"
+            loading="lazy"
+          >
+        </div>
+      {%- endif -%}
+
+      <div class="image-with-features-text">
+        {%- if section.settings.main_title != blank -%}
+          <h3 class="image-with-features-main-title">{{ section.settings.main_title }}</h3>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="image-with-features-features">
+            {%- for block in section.blocks limit: 4 -%}
+              <div class="image-with-features-feature" {{ block.shopify_attributes }}>
+                {%- if block.settings.number != blank -%}
+                  <div class="image-with-features-feature-number">{{ block.settings.number }}</div>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                  <div class="image-with-features-feature-desc">{{ block.settings.description }}</div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "图片与特性",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "主标题"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "图片"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "内容标题",
+      "default": "Main Features"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "布局方向",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "水平排列"
+        },
+        {
+          "value": "vertical",
+          "label": "垂直排列"
+        }
+      ],
+      "default": "horizontal"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "特性项",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "数字",
+          "default": "100"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "描述",
+          "default": "Feature Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "图片与特性",
+      "settings": {
+        "title": "Features",
+        "main_title": "Main Features"
+      },
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "number": "100+",
+            "description": "Selling to Countriesand Regions"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "number": "200+",
+            "description": "Global Electric Scooter Sales"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "number": "33,322,33+",
+            "description": "Electric Scooter Patent"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "number": "400+",
+            "description": "Global Electric Scooter Sales"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

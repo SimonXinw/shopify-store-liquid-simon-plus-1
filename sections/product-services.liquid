@@ -1,0 +1,230 @@
+{%- style -%}
+  #ProductServices-{{ section.id }} {
+    width: 100%;
+    padding: 40px 0;
+  }
+
+  #ProductServices-{{ section.id }} .product-services {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+  }
+
+  #ProductServices-{{ section.id }} .product-services-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+    max-width: 25%;
+  }
+
+  #ProductServices-{{ section.id }} .product-services-item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  #ProductServices-{{ section.id }} .product-services-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+
+  #ProductServices-{{ section.id }} .product-services-item-title {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0;
+  }
+
+  #ProductServices-{{ section.id }} .product-services-item-desc {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+    margin: 0;
+    white-space: nowrap; /* 增加单词不换行 */
+  }
+
+  @media screen and (max-width: 1199px) {
+    #ProductServices-{{ section.id }} .product-services-item {
+      max-width: calc(33.333% - 27px);
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    #ProductServices-{{ section.id }} .product-services-item {
+      max-width: calc(50% - 20px);
+    }
+
+    #ProductServices-{{ section.id }} .product-services-item-title {
+      font-size: 24px;
+    }
+
+    #ProductServices-{{ section.id }} .product-services-item-desc {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    #ProductServices-{{ section.id }} .product-services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    #ProductServices-{{ section.id }} .product-services-item {
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+
+      overflow: hidden;
+    }
+
+
+    #ProductServices-{{ section.id }} .product-services-item-image {
+      width: 48px;
+      height: 48px;
+    }
+
+    #ProductServices-{{ section.id }} .product-services-item-title,
+    #ProductServices-{{ section.id }} .product-services-item-desc {
+
+      text-align: center;
+    }
+    #ProductServices-{{ section.id }} .product-services-item-title {
+      font-size: 16px;
+    }
+    #ProductServices-{{ section.id }} .product-services-item-desc {
+      font-size: 12px;
+    }
+
+  }
+{%- endstyle -%}
+
+<div id="ProductServices-{{ section.id }}" class="section">
+  {%- if section.blocks.size > 0 -%}
+    <div class="product-services">
+      {%- for block in section.blocks limit: 4 -%}
+        {%- if block.settings.image != blank or block.settings.title != blank or block.settings.desc != blank -%}
+          <div class="product-services-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 224 }}"
+                alt="{{ block.settings.image.alt | default: block.settings.title }}"
+                class="product-services-item-image"
+                width="112"
+                height="112"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div
+                class="product-services-item-image"
+                style="background-color: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #999;"
+              >
+                <span>图片</span>
+              </div>
+            {%- endif -%}
+
+            <div class="product-services-item-content">
+              {%- if block.settings.title != blank -%}
+                <h3 class="product-services-item-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+
+              {%- if block.settings.desc != blank -%}
+                <p class="product-services-item-desc">{{ block.settings.desc }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "产品服务列表",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "blocks": [
+    {
+      "type": "service_item",
+      "name": "服务项目",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图标图片"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "服务标题"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "描述文字",
+          "default": "服务描述内容"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "产品服务列表",
+      "blocks": [
+        {
+          "type": "service_item",
+          "settings": {
+            "title": "快速配送",
+            "desc": "全国范围内快速配送服务"
+          }
+        },
+        {
+          "type": "service_item",
+          "settings": {
+            "title": "售后保障",
+            "desc": "专业售后服务团队支持"
+          }
+        },
+        {
+          "type": "service_item",
+          "settings": {
+            "title": "品质保证",
+            "desc": "严格的品质控制标准"
+          }
+        },
+        {
+          "type": "service_item",
+          "settings": {
+            "title": "技术支持",
+            "desc": "专业技术团队在线支持"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
