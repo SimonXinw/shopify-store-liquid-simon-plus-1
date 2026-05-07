@@ -198,7 +198,7 @@
           "settings": {
             "media_type": "video",
             "image": "shopify://shop_images/moments_banner_1.webp",
-            "video": "shopify://files/videos/swiper_banner_video_1.mp4",
+            "video": "",
             "title": "",
             "show_footer": true,
             "text_group_1_desc": "High-Power Motor",
