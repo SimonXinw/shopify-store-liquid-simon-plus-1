@@ -118,16 +118,6 @@
                                   {%- break -%}
                                 {%- endif -%}
                               {%- endfor -%}
-                              {%- assign hero_has_media = false -%}
-                              {%- if grandchildlink.type == 'product_link' and grandchildlink.object.featured_image != blank -%}
-                                {%- assign hero_has_media = true -%}
-                              {%- elsif grandchildlink.type == 'collection_link' and grandchildlink.object.featured_image != blank -%}
-                                {%- assign hero_has_media = true -%}
-                              {%- elsif grandchildlink.type == 'page_link' and grandchildlink.object.metafields.custom.page_image != blank -%}
-                                {%- assign hero_has_media = true -%}
-                              {%- elsif custom_block != blank and custom_block.settings.image != blank -%}
-                                {%- assign hero_has_media = true -%}
-                              {%- endif -%}
                               <a
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                 href="{{ grandchildlink.url }}"
@@ -136,7 +126,7 @@
                                   aria-current="page"
                                 {% endif %}
                               >
-                                <div class="header-v3-hero-card__media{% unless hero_has_media %} header-v3-hero-card__media--empty{% endunless %}">
+                                <div class="header-v3-hero-card__media">
                                   {%- if grandchildlink.type == 'product_link' and grandchildlink.object.featured_image != blank -%}
                                     {{
                                       grandchildlink.object.featured_image
@@ -181,6 +171,9 @@
                                         class: 'header-v3-hero-card__image',
                                         alt: grandchildlink.title
                                     }}
+                                  {%- else -%}
+                                    {% comment %} 无图占位：整段 if/else 可删，仅保留真实 image 分支 {% endcomment %}
+                                    <div class="header-v3-hero-card__placeholder" aria-hidden="true"></div>
                                   {%- endif -%}
                                 </div>
                                 <div class="header-v3-hero-card__copy">
