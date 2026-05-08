@@ -3,6 +3,7 @@
 {% endcomment %}
 
 <nav class="header__inline-menu header-v3-menu" data-v3-menu>
+  <div class="header-v3-menu__bar">
   <ul class="list-menu list-menu--inline header-v3-menu__list" role="list">
     {%- for link in section.settings.menu.links -%}
       <li class="header-v3-menu__item{% if link.links != blank %} has-mega-menu{% endif %}">
@@ -36,6 +37,7 @@
       </li>
     {%- endfor -%}
   </ul>
+  </div>
 
   <div class="header-v3-panels" data-v3-panels>
     {%- for link in section.settings.menu.links -%}
