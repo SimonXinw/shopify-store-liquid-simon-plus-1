@@ -150,6 +150,19 @@
                 -%}
               </a>
             {%- endif -%}
+
+            {%- if section.settings.mobile_localization_in_nav -%}
+              <div class="header-v3-mobile-localization">
+                {%- render "v3-localization-tools",
+                  wrapper_modifier: "header",
+                  form_id: "localization_form_header_us_v3",
+                  currency_popover_id: "header-currency-selector-us-v3",
+                  locale_popover_id: "header-locale-selector-us-v3",
+                  show_country_selector: section.settings.mobile_nav_show_country_selector,
+                  show_locale_selector: section.settings.mobile_nav_show_locale_selector
+                -%}
+              </div>
+            {%- endif -%}
           </div>
         </div>
       </div>

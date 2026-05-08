@@ -93,7 +93,54 @@
     });
   };
 
+  const initRegionPickers = () => {
+    const roots = document.querySelectorAll("[data-v3-region-picker]");
+
+    if (!roots.length) {
+      return;
+    }
+
+    const hideCountryList = (listElement) => {
+      if (!listElement) {
+        return;
+      }
+
+      listElement.style.display = "none";
+    };
+
+    roots.forEach((root) => {
+      const trigger = root.querySelector(".country_container");
+      const listElement = root.querySelector(".country_list");
+
+      if (!trigger || !listElement) {
+        return;
+      }
+
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const isOpen = listElement.style.display === "block";
+
+        roots.forEach((pickerRoot) => {
+          const pickerList = pickerRoot.querySelector(".country_list");
+          hideCountryList(pickerList);
+        });
+
+        if (!isOpen) {
+          listElement.style.display = "block";
+        }
+      });
+    });
+
+    document.addEventListener("click", () => {
+      roots.forEach((root) => {
+        const listElement = root.querySelector(".country_list");
+        hideCountryList(listElement);
+      });
+    });
+  };
+
   document.addEventListener("DOMContentLoaded", () => {
     initDesktopHover();
+    initRegionPickers();
   });
 })();

@@ -1,0 +1,98 @@
+{%- liquid
+  assign v3_country_sel = false
+  if show_country_selector and localization.available_countries.size > 1
+    assign v3_country_sel = true
+  endif
+
+  assign v3_locale_sel = false
+  if show_locale_selector and localization.available_languages.size > 1
+    assign v3_locale_sel = true
+  endif
+-%}
+
+<div class="v3-localization-tools v3-localization-tools--{{ wrapper_modifier }}">
+  <div class="country_choose country_select" data-v3-region-picker>
+    <div class="country_container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3a9 9 0 1 1 0 18a9 9 0 0 1 0-18Zm0 0v18m-9-9h18M5.3 6.9h13.4M5.3 17.1h13.4" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <span class="conuntry_name">{{ localization.country.iso_code }}</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M6 9l6 6l6-6"></path>
+      </svg>
+    </div>
+    <ul class="country_list">
+      <li class="country_list_items"><a href="https://awolvision.com/"><span>US</span></a></li>
+      <li class="country_list_items"><a href="https://awolvision.de/"><span>EU</span></a></li>
+      <li class="country_list_items"><a href="https://awolvision.jp/"><span>JP</span></a></li>
+    </ul>
+  </div>
+
+  {%- if v3_country_sel or v3_locale_sel -%}
+    {%- form "localization", id: form_id, class: "footer__cross-border" -%}
+      {%- if v3_country_sel -%}
+        <div class="popover-container">
+          <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+          <button type="button" is="toggle-button" class="select" aria-expanded="false" aria-controls="{{ currency_popover_id }}">
+            {{ localization.country.name }} ({{ localization.country.currency.iso_code }})
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M6 9l6 6l6-6"></path>
+            </svg>
+          </button>
+          <popover-content id="{{ currency_popover_id }}" class="popover popover--top popover--small">
+            <span class="popover__overlay"></span>
+            <header class="popover__header">
+              <span class="popover__title heading h6">{{ "footer.general.country" | t }}</span>
+              <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ "general.accessibility.close" | t | escape }}">
+                {%- render "icon" with "close" -%}
+              </button>
+            </header>
+            <div class="popover__content popover__content--restrict">
+              <div class="popover__choice-list">
+                {%- for country in localization.available_countries -%}
+                  <button type="submit" name="country_code" value="{{ country.iso_code }}" class="popover__choice-item">
+                    <span class="popover__choice-label" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}>
+                      {{ country.name }} ({{ country.currency.iso_code }})
+                    </span>
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          </popover-content>
+        </div>
+      {%- endif -%}
+
+      {%- if v3_locale_sel -%}
+        <div class="popover-container">
+          <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+          <button type="button" is="toggle-button" class="select" aria-expanded="false" aria-controls="{{ locale_popover_id }}">
+            {{ localization.language.endonym_name | capitalize }}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M6 9l6 6l6-6"></path>
+            </svg>
+          </button>
+          <popover-content id="{{ locale_popover_id }}" class="popover popover--top popover--small">
+            <span class="popover__overlay"></span>
+            <header class="popover__header">
+              <span class="popover__title heading h6">{{ "footer.general.language" | t }}</span>
+              <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ "general.accessibility.close" | t | escape }}">
+                {%- render "icon" with "close" -%}
+              </button>
+            </header>
+            <div class="popover__content">
+              <div class="popover__choice-list">
+                {%- for language in localization.available_languages -%}
+                  <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="popover__choice-item">
+                    <span class="popover__choice-label" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                      {{ language.endonym_name | capitalize }}
+                    </span>
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          </popover-content>
+        </div>
+      {%- endif -%}
+    {%- endform -%}
+  {%- endif -%}
+</div>

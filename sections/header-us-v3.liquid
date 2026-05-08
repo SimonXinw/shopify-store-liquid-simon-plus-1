@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'header-v3-nav.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'theme-v3.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 
 {%- if settings.predictive_search_enabled -%}
@@ -21,7 +22,7 @@
     --nav-v3-panel-muted: {{ section.settings.nav_v3_panel_muted }};
     --nav-v3-overlay-opacity: {{ section.settings.nav_v3_overlay_opacity | divided_by: 100.0 }};
     --nav-v3-radius: {{ section.settings.nav_v3_radius }}px;
-    --nav-v3-shadow-opacity: {{ section.settings.nav_v3_shadow_opacity | divided_by: 100.0 }};
+    --nav-v3-shadow-opacity: {{ section.settings.nav_v3_shadow_opacity | divided_by: 100.0 }};    
   }
 
   .header-us-v3 {
@@ -498,6 +499,24 @@
       "label": "Enable customer avatar"
     },
     {
+      "type": "checkbox",
+      "id": "mobile_localization_in_nav",
+      "default": true,
+      "label": "Show localization in mobile drawer"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_nav_show_country_selector",
+      "default": true,
+      "label": "Mobile country selector"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_nav_show_locale_selector",
+      "default": true,
+      "label": "Mobile language selector"
+    },
+    {
       "type": "range",
       "id": "margin_bottom",
       "min": 0,
@@ -530,7 +549,8 @@
   ],
   "blocks": [
     {
-      "type": "@app"
+      "type": "@app",
+      "name": "App"
     },
     {
       "type": "custom_card",
