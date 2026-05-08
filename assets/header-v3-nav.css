@@ -18,6 +18,8 @@
 }
 
 .header-v3-menu {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
@@ -62,25 +64,57 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: calc(var(--nav-v3-radius) + 2px);
   box-shadow: 0 20px 56px rgba(0, 0, 0, var(--nav-v3-shadow-opacity));
+  height: 0;
+  overflow: hidden;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: opacity 0.24s ease, transform 0.24s ease, grid-template-rows 0.28s ease;
+  transition: height 0.3s ease, opacity 0.24s ease, transform 0.24s ease;
   z-index: 30;
 }
 
 .header-v3-mega__inner {
-  overflow: hidden;
-  padding: 0 2.4rem;
-  transition: padding 0.28s ease;
+  padding: 2.4rem;
 }
 
 .header-v3-mega__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
+}
+
+.header-v3-mega__flat-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.header-v3-mega__flat-link,
+.header-v3-mega__simple-link {
+  display: block;
+  padding: 1.1rem 1.4rem;
+  border-radius: var(--nav-v3-radius);
+  color: var(--nav-v3-text);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.header-v3-mega__flat-link:hover,
+.header-v3-mega__simple-link:hover,
+.header-v3-mega__flat-link--active,
+.header-v3-mega__simple-link--active {
+  color: var(--nav-v3-accent);
+  border-color: color-mix(in srgb, var(--nav-v3-accent) 50%, transparent);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.header-v3-mega__simple-links {
+  margin: 0;
+  padding: 0;
 }
 
 .header-v3-mega__title {
@@ -168,12 +202,6 @@
 
 .header-v3-menu__details[open] .header-v3-mega {
   transform: translateY(0);
-  grid-template-rows: 1fr;
-}
-
-.header-v3-menu__details[open] .header-v3-mega__inner {
-  padding-top: 2.4rem;
-  padding-bottom: 2.4rem;
 }
 
 .header-v3-drawer__summary {

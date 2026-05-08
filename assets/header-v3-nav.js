@@ -1,11 +1,43 @@
 (() => {
   const DESKTOP_BREAKPOINT = 990;
+  const MEGA_MENU_SELECTOR = ".header-v3-mega";
+  const MEGA_MENU_INNER_SELECTOR = ".header-v3-mega__inner";
+
+  const updateMegaMenuHeight = (details) => {
+    if (!details) {
+      return;
+    }
+
+    const megaMenu = details.querySelector(MEGA_MENU_SELECTOR);
+    const megaMenuInner = details.querySelector(MEGA_MENU_INNER_SELECTOR);
+
+    if (!megaMenu || !megaMenuInner) {
+      return;
+    }
+
+    megaMenu.style.height = `${megaMenuInner.scrollHeight}px`;
+  };
+
+  const resetMegaMenuHeight = (details) => {
+    if (!details) {
+      return;
+    }
+
+    const megaMenu = details.querySelector(MEGA_MENU_SELECTOR);
+
+    if (!megaMenu) {
+      return;
+    }
+
+    megaMenu.style.height = "0px";
+  };
 
   const closeMenu = (details) => {
     if (!details) {
       return;
     }
 
+    resetMegaMenuHeight(details);
     details.removeAttribute("open");
     const summary = details.querySelector("summary");
 
@@ -20,6 +52,7 @@
     }
 
     details.setAttribute("open", "open");
+    updateMegaMenuHeight(details);
     const summary = details.querySelector("summary");
 
     if (summary) {
@@ -89,7 +122,16 @@
         detailsList.forEach((details) => {
           closeMenu(details);
         });
+        return;
       }
+
+      detailsList.forEach((details) => {
+        if (details.hasAttribute("open")) {
+          updateMegaMenuHeight(details);
+        } else {
+          resetMegaMenuHeight(details);
+        }
+      });
     });
   };
 
