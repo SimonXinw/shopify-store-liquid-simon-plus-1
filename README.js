@@ -35,7 +35,7 @@ theme token：shptka_5490b89fd919fb2e13f1c8e1159174e7
 npm install -g @shopify/cli@latest
 
 # 开发已经存在的指定主题 id
-shopify theme dev -t 147604308155 --store=simon-plus-xinwang.myshopify.com
+shopify theme dev -t 147602407611 --store=simon-plus-xinwang.myshopify.com
 
 # 如果需要输入密码
 shopify 没有付费的时候，是密码限制访问，密码在-在线商店-偏好设置-密码-默认-yeetse
