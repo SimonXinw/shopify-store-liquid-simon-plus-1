@@ -18,8 +18,7 @@
 }
 
 .header-v3-menu {
-  display: flex;
-  align-items: center;
+  display: block;
   position: relative;
 }
 
@@ -35,46 +34,44 @@
 }
 
 .header-v3-menu__item {
-  position: static;
   display: flex;
   align-items: center;
 }
 
-.header-v3-menu__details {
-  position: static;
-}
-
-.header-v3-menu__details > summary {
-  display: flex;
-  align-items: center;
-  list-style: none;
-}
-
-.header-v3-menu__details > summary::-webkit-details-marker {
-  display: none;
-}
-
-.header-v3-mega {
-  position: absolute;
-  top: calc(100% + 1.2rem);
-  left: 0;
+.header-v3-panels {
   width: 100%;
-  transform: translateY(-0.8rem);
-  background: var(--nav-v3-panel-bg);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: calc(var(--nav-v3-radius) + 2px);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, var(--nav-v3-shadow-opacity));
   height: 0;
+  margin-top: 0;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
+  transform: translateY(-0.8rem);
+  background: var(--nav-v3-panel-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   pointer-events: none;
-  transition: height 0.3s ease, opacity 0.24s ease, transform 0.24s ease;
+  transition: height 0.3s ease, opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
   z-index: 30;
+}
+
+.header-v3-menu.is-panel-open .header-v3-panels {
+  margin-top: 1.2rem;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.header-v3-mega {
+  display: none;
+}
+
+.header-v3-mega.is-active {
+  display: block;
 }
 
 .header-v3-mega__inner {
   padding: 2.4rem;
+  min-height: 100%;
 }
 
 .header-v3-mega__grid {
@@ -193,15 +190,10 @@
   transition: opacity 0.24s ease;
 }
 
-.header-v3-menu__details[open] .header-v3-menu__overlay,
-.header-v3-menu__details[open] .header-v3-mega {
+.header-v3-menu.is-panel-open .header-v3-menu__overlay {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-}
-
-.header-v3-menu__details[open] .header-v3-mega {
-  transform: translateY(0);
 }
 
 .header-v3-drawer__summary {
@@ -294,7 +286,9 @@
 }
 
 @media screen and (max-width: 989px) {
-  .header-v3-mega {
+  .header-v3-panels,
+  .header-v3-mega,
+  .header-v3-menu__overlay {
     display: none;
   }
 

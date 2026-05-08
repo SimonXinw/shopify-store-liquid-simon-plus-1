@@ -1,136 +1,148 @@
 (() => {
   const DESKTOP_BREAKPOINT = 990;
-  const MEGA_MENU_SELECTOR = ".header-v3-mega";
-  const MEGA_MENU_INNER_SELECTOR = ".header-v3-mega__inner";
-
-  const updateMegaMenuHeight = (details) => {
-    if (!details) {
-      return;
-    }
-
-    const megaMenu = details.querySelector(MEGA_MENU_SELECTOR);
-    const megaMenuInner = details.querySelector(MEGA_MENU_INNER_SELECTOR);
-
-    if (!megaMenu || !megaMenuInner) {
-      return;
-    }
-
-    megaMenu.style.height = `${megaMenuInner.scrollHeight}px`;
-  };
-
-  const resetMegaMenuHeight = (details) => {
-    if (!details) {
-      return;
-    }
-
-    const megaMenu = details.querySelector(MEGA_MENU_SELECTOR);
-
-    if (!megaMenu) {
-      return;
-    }
-
-    megaMenu.style.height = "0px";
-  };
-
-  const closeMenu = (details) => {
-    if (!details) {
-      return;
-    }
-
-    resetMegaMenuHeight(details);
-    details.removeAttribute("open");
-    const summary = details.querySelector("summary");
-
-    if (summary) {
-      summary.setAttribute("aria-expanded", "false");
-    }
-  };
-
-  const openMenu = (details) => {
-    if (!details) {
-      return;
-    }
-
-    details.setAttribute("open", "open");
-    updateMegaMenuHeight(details);
-    const summary = details.querySelector("summary");
-
-    if (summary) {
-      summary.setAttribute("aria-expanded", "true");
-    }
-  };
 
   const initDesktopHover = () => {
-    const detailsList = Array.from(document.querySelectorAll(".header-v3-menu__details"));
+    const menuRoots = Array.from(document.querySelectorAll("[data-v3-menu]"));
 
-    if (!detailsList.length) {
+    if (!menuRoots.length) {
       return;
     }
 
-    let closeTimer = null;
+    menuRoots.forEach((menuRoot) => {
+      const panelContainer = menuRoot.querySelector("[data-v3-panels]");
+      const triggers = Array.from(menuRoot.querySelectorAll("[data-v3-panel-trigger]"));
+      const panels = Array.from(menuRoot.querySelectorAll("[data-v3-panel]"));
+      const overlay = menuRoot.querySelector(".header-v3-menu__overlay");
 
-    detailsList.forEach((details) => {
-      const summary = details.querySelector("summary");
-      const overlay = details.querySelector(".header-v3-menu__overlay");
-
-      if (!summary) {
+      if (!panelContainer || !triggers.length || !panels.length) {
         return;
       }
 
-      details.addEventListener("mouseenter", () => {
-        if (window.innerWidth < DESKTOP_BREAKPOINT) {
-          return;
-        }
+      let activePanelId = "";
+      let closeTimer = null;
 
-        window.clearTimeout(closeTimer);
-        detailsList.forEach((menuDetails) => {
-          if (menuDetails !== details) {
-            closeMenu(menuDetails);
-          }
+      const setPanelContainerHeight = (heightValue) => {
+        panelContainer.style.height = `${heightValue}px`;
+      };
+
+      const resetOpenState = () => {
+        menuRoot.classList.remove("is-panel-open");
+        activePanelId = "";
+        setPanelContainerHeight(0);
+
+        triggers.forEach((trigger) => {
+          trigger.setAttribute("aria-expanded", "false");
         });
-        openMenu(details);
-      });
 
-      details.addEventListener("mouseleave", () => {
-        if (window.innerWidth < DESKTOP_BREAKPOINT) {
+        panels.forEach((panel) => {
+          panel.classList.remove("is-active");
+        });
+      };
+
+      const openPanelById = (panelId) => {
+        const nextPanel = panels.find((panel) => panel.dataset.v3Panel === panelId);
+        const nextTrigger = triggers.find((trigger) => trigger.dataset.v3PanelTrigger === panelId);
+
+        if (!nextPanel || !nextTrigger) {
           return;
         }
 
+        activePanelId = panelId;
+        menuRoot.classList.add("is-panel-open");
+
+        panels.forEach((panel) => {
+          panel.classList.toggle("is-active", panel === nextPanel);
+        });
+
+        triggers.forEach((trigger) => {
+          trigger.setAttribute("aria-expanded", trigger === nextTrigger ? "true" : "false");
+        });
+
+        setPanelContainerHeight(nextPanel.scrollHeight);
+      };
+
+      const scheduleClose = () => {
         window.clearTimeout(closeTimer);
         closeTimer = window.setTimeout(() => {
-          closeMenu(details);
-        }, 120);
+          resetOpenState();
+        }, 140);
+      };
+
+      const cancelClose = () => {
+        window.clearTimeout(closeTimer);
+      };
+
+      triggers.forEach((trigger) => {
+        const panelId = trigger.dataset.v3PanelTrigger;
+
+        trigger.addEventListener("mouseenter", () => {
+          if (window.innerWidth < DESKTOP_BREAKPOINT) {
+            return;
+          }
+
+          cancelClose();
+          openPanelById(panelId);
+        });
+
+        trigger.addEventListener("focus", () => {
+          if (window.innerWidth < DESKTOP_BREAKPOINT) {
+            return;
+          }
+
+          cancelClose();
+          openPanelById(panelId);
+        });
       });
 
-      summary.addEventListener("click", (event) => {
+      menuRoot.addEventListener("mouseenter", () => {
         if (window.innerWidth < DESKTOP_BREAKPOINT) {
           return;
         }
 
-        event.preventDefault();
+        cancelClose();
+      });
+
+      menuRoot.addEventListener("mouseleave", () => {
+        if (window.innerWidth < DESKTOP_BREAKPOINT) {
+          return;
+        }
+
+        scheduleClose();
+      });
+
+      panelContainer.addEventListener("mouseenter", () => {
+        if (window.innerWidth < DESKTOP_BREAKPOINT) {
+          return;
+        }
+
+        cancelClose();
+      });
+
+      panelContainer.addEventListener("mouseleave", () => {
+        if (window.innerWidth < DESKTOP_BREAKPOINT) {
+          return;
+        }
+
+        scheduleClose();
       });
 
       if (overlay) {
         overlay.addEventListener("click", () => {
-          closeMenu(details);
+          resetOpenState();
         });
       }
-    });
 
-    window.addEventListener("resize", () => {
-      if (window.innerWidth < DESKTOP_BREAKPOINT) {
-        detailsList.forEach((details) => {
-          closeMenu(details);
-        });
-        return;
-      }
-
-      detailsList.forEach((details) => {
-        if (details.hasAttribute("open")) {
-          updateMegaMenuHeight(details);
-        } else {
-          resetMegaMenuHeight(details);
+      window.addEventListener("resize", () => {
+        if (window.innerWidth < DESKTOP_BREAKPOINT) {
+          resetOpenState();
+          return;
         }
+
+        if (!activePanelId) {
+          return;
+        }
+
+        openPanelById(activePanelId);
       });
     });
   };
