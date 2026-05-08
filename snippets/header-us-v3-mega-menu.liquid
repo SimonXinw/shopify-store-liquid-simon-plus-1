@@ -4,46 +4,46 @@
 
 <nav class="header__inline-menu header-v3-menu" data-v3-menu>
   <div class="header-v3-menu__bar">
-  <ul class="list-menu list-menu--inline header-v3-menu__list" role="list">
-    {%- for link in section.settings.menu.links -%}
-      <li class="header-v3-menu__item{% if link.links != blank %} has-mega-menu{% endif %}">
-        {%- if link.links != blank -%}
-          <a
-            id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="header__menu-item list-menu__item link focus-inset header-v3-menu__trigger header-v3-menu__trigger--has-panel"
-            data-v3-panel-trigger="{{ forloop.index }}"
-            aria-controls="MegaMenu-Content-{{ forloop.index }}"
-            aria-expanded="false"
-          >
-            <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>
-              {{- link.title | escape -}}
-            </span>
-          </a>
-        {%- else -%}
-          <a
-            id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset header-v3-menu__trigger"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
-          >
-            <span{% if link.current %} class="header__active-menu-item"{% endif %}>
-              {{- link.title | escape -}}
-            </span>
-          </a>
-        {%- endif -%}
-      </li>
-    {%- endfor -%}
-  </ul>
+    <ul class="list-menu list-menu--inline header-v3-menu__list" role="list">
+      {%- for link in section.settings.menu.links -%}
+        <li class="header-v3-menu__item{% if link.links != blank %} has-mega-menu{% endif %}">
+          {%- if link.links != blank -%}
+            <a
+              id="HeaderMenu-{{ link.handle }}"
+              href="{{ link.url }}"
+              class="header__menu-item list-menu__item link focus-inset header-v3-menu__trigger header-v3-menu__trigger--has-panel"
+              data-v3-panel-trigger="{{ forloop.index }}"
+              aria-controls="MegaMenu-Content-{{ forloop.index }}"
+              aria-expanded="false"
+            >
+              <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>
+                {{- link.title | escape -}}
+              </span>
+            </a>
+          {%- else -%}
+            <a
+              id="HeaderMenu-{{ link.handle }}"
+              href="{{ link.url }}"
+              class="header__menu-item list-menu__item link link--text focus-inset header-v3-menu__trigger"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              <span{% if link.current %} class="header__active-menu-item"{% endif %}>
+                {{- link.title | escape -}}
+              </span>
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
   </div>
 
   <div class="header-v3-panels" data-v3-panels>
     {%- for link in section.settings.menu.links -%}
       {%- if link.links != blank -%}
         <div id="MegaMenu-Content-{{ forloop.index }}" class="header-v3-mega" data-v3-panel="{{ forloop.index }}" tabindex="-1">
-          <div class="header-v3-mega__inner page-width">
+          <div class="header-v3-mega__inner">
             {%- assign has_third_level = false -%}
             {%- for childlink in link.links -%}
               {%- if childlink.links != blank -%}
@@ -53,119 +53,205 @@
             {%- endfor -%}
 
             {%- if has_third_level -%}
-              <div class="header-v3-mega__grid header-v3-mega__grid--level-3">
-                {%- for childlink in link.links -%}
-                  <div class="header-v3-mega__column">
-                    <a
-                      id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                      href="{{ childlink.url }}"
-                      class="header-v3-mega__title link{% if childlink.current %} header-v3-mega__title--active{% endif %}"
-                      {% if childlink.current %}
-                        aria-current="page"
-                      {% endif %}
+              {%- assign default_l2_index = 1 -%}
+              {%- for childlink in link.links -%}
+                {%- if childlink.active or childlink.child_active -%}
+                  {%- assign default_l2_index = forloop.index -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              <div class="header-v3-mega__split page-width" data-v3-default-l2="{{ default_l2_index }}">
+                <div class="header-v3-mega__l2">
+                  <ul class="header-v3-mega__l2-list list-unstyled" role="list">
+                    {%- for childlink in link.links -%}
+                      <li>
+                        <a
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          href="{{ childlink.url }}"
+                          class="header-v3-mega__l2-link{% if forloop.index == default_l2_index %} is-active{% endif %}"
+                          data-v3-l2-tab="{{ forloop.index }}"
+                          {% if childlink.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          <span class="header-v3-mega__l2-label">{{ childlink.title | escape }}</span>
+                          <span class="header-v3-mega__l2-chevron" aria-hidden="true">
+                            {{- 'icon-caret.svg' | inline_asset_content -}}
+                          </span>
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+
+                <div class="header-v3-mega__l3">
+                  {%- for childlink in link.links -%}
+                    <div
+                      id="MegaMenu-L3-{{ link.handle }}-{{ forloop.index }}"
+                      class="header-v3-mega__l3-panel{% if forloop.index == default_l2_index %} is-active{% endif %}"
+                      data-v3-l2-panel="{{ forloop.index }}"
+                      role="region"
                     >
-                      {{ childlink.title | escape }}
-                    </a>
-                    {%- if childlink.links != blank -%}
-                      <ul class="header-v3-mega__cards list-unstyled" role="list">
+                      {%- if childlink.links != blank -%}
+                        {%- assign l3_hero_mode = false -%}
                         {%- for grandchildlink in childlink.links -%}
-                          {%- assign custom_block = blank -%}
-                          {%- for block in section.blocks -%}
-                            {%- if block.type == 'custom_card' and block.settings.menu_title == grandchildlink.title -%}
-                              {%- assign custom_block = block -%}
-                              {%- break -%}
-                            {%- endif -%}
-                          {%- endfor -%}
-                          <li>
-                            <a
-                              id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                              href="{{ grandchildlink.url }}"
-                              class="header-v3-card link"
-                              {% if grandchildlink.current %}
-                                aria-current="page"
-                              {% endif %}
-                            >
-                              <div class="header-v3-card__media">
-                                {%- if grandchildlink.type == 'product_link' and grandchildlink.object.featured_image != blank -%}
-                                  {{
-                                    grandchildlink.object.featured_image
-                                    | image_url: width: 420
-                                    | image_tag:
-                                      loading: 'lazy',
-                                      widths: '220,320,420',
-                                      class: 'header-v3-card__image',
-                                      alt: grandchildlink.title
-                                  }}
-                                {%- elsif grandchildlink.type == 'page_link' and grandchildlink.object.metafields.custom.page_image != blank -%}
-                                  {{
-                                    grandchildlink.object.metafields.custom.page_image
-                                    | image_url: width: 420
-                                    | image_tag:
-                                      loading: 'lazy',
-                                      widths: '220,320,420',
-                                      class: 'header-v3-card__image',
-                                      alt: grandchildlink.title
-                                  }}
-                                {%- elsif custom_block != blank and custom_block.settings.image != blank -%}
-                                  {{
-                                    custom_block.settings.image
-                                    | image_url: width: 420
-                                    | image_tag:
-                                      loading: 'lazy',
-                                      widths: '220,320,420',
-                                      class: 'header-v3-card__image',
-                                      alt: grandchildlink.title
-                                  }}
-                                {%- endif -%}
-                              </div>
-                              <div class="header-v3-card__body">
-                                <p class="header-v3-card__heading">{{ grandchildlink.title | escape }}</p>
-                                {%- if grandchildlink.type == 'product_link' and grandchildlink.object.metafields.custom.product_subtitle != blank -%}
-                                  <p class="header-v3-card__subheading">{{ grandchildlink.object.metafields.custom.product_subtitle | escape }}</p>
-                                {%- elsif custom_block != blank and custom_block.settings.subtitle != blank -%}
-                                  <p class="header-v3-card__subheading">{{ custom_block.settings.subtitle | escape }}</p>
-                                {%- endif -%}
-                              </div>
-                            </a>
-                          </li>
+                          {%- if grandchildlink.type == 'product_link' and grandchildlink.object.featured_image != blank -%}
+                            {%- assign l3_hero_mode = true -%}
+                            {%- break -%}
+                          {%- elsif grandchildlink.type == 'collection_link' and grandchildlink.object.featured_image != blank -%}
+                            {%- assign l3_hero_mode = true -%}
+                            {%- break -%}
+                          {%- elsif grandchildlink.type == 'page_link' and grandchildlink.object.metafields.custom.page_image != blank -%}
+                            {%- assign l3_hero_mode = true -%}
+                            {%- break -%}
+                          {%- endif -%}
                         {%- endfor -%}
-                      </ul>
-                    {%- else -%}
-                      <ul class="header-v3-mega__simple-links list-unstyled" role="list">
-                        <li>
-                          <a
-                            id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-direct"
-                            href="{{ childlink.url }}"
-                            class="header-v3-mega__simple-link link{% if childlink.current %} header-v3-mega__simple-link--active{% endif %}"
-                            {% if childlink.current %}
-                              aria-current="page"
-                            {% endif %}
-                          >
+
+                        {%- if l3_hero_mode -%}
+                          <div class="header-v3-mega__hero-row">
+                            {%- for grandchildlink in childlink.links -%}
+                              {%- assign custom_block = blank -%}
+                              {%- for block in section.blocks -%}
+                                {%- if block.type == 'custom_card' and block.settings.menu_title == grandchildlink.title -%}
+                                  {%- assign custom_block = block -%}
+                                  {%- break -%}
+                                {%- endif -%}
+                              {%- endfor -%}
+                              {%- assign hero_has_media = false -%}
+                              {%- if grandchildlink.type == 'product_link' and grandchildlink.object.featured_image != blank -%}
+                                {%- assign hero_has_media = true -%}
+                              {%- elsif grandchildlink.type == 'collection_link' and grandchildlink.object.featured_image != blank -%}
+                                {%- assign hero_has_media = true -%}
+                              {%- elsif grandchildlink.type == 'page_link' and grandchildlink.object.metafields.custom.page_image != blank -%}
+                                {%- assign hero_has_media = true -%}
+                              {%- elsif custom_block != blank and custom_block.settings.image != blank -%}
+                                {%- assign hero_has_media = true -%}
+                              {%- endif -%}
+                              <a
+                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                href="{{ grandchildlink.url }}"
+                                class="header-v3-hero-card link"
+                                {% if grandchildlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                <div class="header-v3-hero-card__media{% unless hero_has_media %} header-v3-hero-card__media--empty{% endunless %}">
+                                  {%- if grandchildlink.type == 'product_link' and grandchildlink.object.featured_image != blank -%}
+                                    {{
+                                      grandchildlink.object.featured_image
+                                      | image_url: width: 1200
+                                      | image_tag:
+                                        loading: 'lazy',
+                                        widths: '400,600,800,1000,1200',
+                                        sizes: '(min-width: 990px) 38vw, 90vw',
+                                        class: 'header-v3-hero-card__image',
+                                        alt: grandchildlink.title
+                                    }}
+                                  {%- elsif grandchildlink.type == 'collection_link' and grandchildlink.object.featured_image != blank -%}
+                                    {{
+                                      grandchildlink.object.featured_image
+                                      | image_url: width: 1200
+                                      | image_tag:
+                                        loading: 'lazy',
+                                        widths: '400,600,800,1000,1200',
+                                        sizes: '(min-width: 990px) 38vw, 90vw',
+                                        class: 'header-v3-hero-card__image',
+                                        alt: grandchildlink.title
+                                    }}
+                                  {%- elsif grandchildlink.type == 'page_link' and grandchildlink.object.metafields.custom.page_image != blank -%}
+                                    {{
+                                      grandchildlink.object.metafields.custom.page_image
+                                      | image_url: width: 1200
+                                      | image_tag:
+                                        loading: 'lazy',
+                                        widths: '400,600,800,1000,1200',
+                                        sizes: '(min-width: 990px) 38vw, 90vw',
+                                        class: 'header-v3-hero-card__image',
+                                        alt: grandchildlink.title
+                                    }}
+                                  {%- elsif custom_block != blank and custom_block.settings.image != blank -%}
+                                    {{
+                                      custom_block.settings.image
+                                      | image_url: width: 1200
+                                      | image_tag:
+                                        loading: 'lazy',
+                                        widths: '400,600,800,1000,1200',
+                                        sizes: '(min-width: 990px) 38vw, 90vw',
+                                        class: 'header-v3-hero-card__image',
+                                        alt: grandchildlink.title
+                                    }}
+                                  {%- endif -%}
+                                </div>
+                                <div class="header-v3-hero-card__copy">
+                                  <p class="header-v3-hero-card__title">{{ grandchildlink.title | escape }}</p>
+                                  {%- if grandchildlink.type == 'product_link' and grandchildlink.object.metafields.custom.product_subtitle != blank -%}
+                                    <p class="header-v3-hero-card__subtitle">{{ grandchildlink.object.metafields.custom.product_subtitle | escape }}</p>
+                                  {%- elsif custom_block != blank and custom_block.settings.subtitle != blank -%}
+                                    <p class="header-v3-hero-card__subtitle">{{ custom_block.settings.subtitle | escape }}</p>
+                                  {%- endif -%}
+                                </div>
+                              </a>
+                            {%- endfor -%}
+                          </div>
+                        {%- else -%}
+                          <ul class="header-v3-mega__l3-links list-unstyled" role="list">
+                            {%- for grandchildlink in childlink.links -%}
+                              {%- assign custom_block = blank -%}
+                              {%- for block in section.blocks -%}
+                                {%- if block.type == 'custom_card' and block.settings.menu_title == grandchildlink.title -%}
+                                  {%- assign custom_block = block -%}
+                                  {%- break -%}
+                                {%- endif -%}
+                              {%- endfor -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="header-v3-mega__l3-text-link link"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  <span>{{ grandchildlink.title | escape }}</span>
+                                  <span class="header-v3-mega__l3-chevron" aria-hidden="true">
+                                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                                  </span>
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      {%- else -%}
+                        <div class="header-v3-mega__l3-fallback">
+                          <a href="{{ childlink.url }}" class="link header-v3-mega__l3-fallback-link">
                             {{ childlink.title | escape }}
                           </a>
-                        </li>
-                      </ul>
-                    {%- endif -%}
-                  </div>
-                {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                </div>
               </div>
             {%- else -%}
-              <ul class="header-v3-mega__flat-links list-unstyled" role="list">
-                {%- for childlink in link.links -%}
-                  <li>
-                    <a
-                      id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                      href="{{ childlink.url }}"
-                      class="header-v3-mega__flat-link link{% if childlink.current %} header-v3-mega__flat-link--active{% endif %}"
-                      {% if childlink.current %}
-                        aria-current="page"
-                      {% endif %}
-                    >
-                      {{ childlink.title | escape }}
-                    </a>
-                  </li>
-                {%- endfor -%}
-              </ul>
+              <div class="header-v3-mega__inner page-width">
+                <ul class="header-v3-mega__flat-links list-unstyled" role="list">
+                  {%- for childlink in link.links -%}
+                    <li>
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                        href="{{ childlink.url }}"
+                        class="header-v3-mega__flat-link link{% if childlink.current %} header-v3-mega__flat-link--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ childlink.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
             {%- endif -%}
           </div>
         </div>

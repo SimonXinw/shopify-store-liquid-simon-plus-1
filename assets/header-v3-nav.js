@@ -1,6 +1,54 @@
 (() => {
   const DESKTOP_BREAKPOINT = 990;
 
+  const getDockAnchor = (menuRoot) =>
+    menuRoot.closest(".header-wrapper") || menuRoot.closest("sticky-header") || menuRoot.closest("header");
+
+  const syncPanelDock = (menuRoot, panelContainer) => {
+    if (!panelContainer || window.innerWidth < DESKTOP_BREAKPOINT) {
+      return;
+    }
+
+    const anchor = getDockAnchor(menuRoot);
+
+    if (!anchor) {
+      return;
+    }
+
+    const rect = anchor.getBoundingClientRect();
+    panelContainer.style.top = `${Math.round(rect.bottom)}px`;
+  };
+
+  const activateL2Tab = (megaPanel, panelContainer, tabIndexStr) => {
+    if (!megaPanel || !panelContainer || !tabIndexStr) {
+      return;
+    }
+
+    megaPanel.querySelectorAll("[data-v3-l2-tab]").forEach((el) => {
+      el.classList.toggle("is-active", el.dataset.v3L2Tab === tabIndexStr);
+    });
+
+    megaPanel.querySelectorAll("[data-v3-l2-panel]").forEach((el) => {
+      el.classList.toggle("is-active", el.dataset.v3L2Panel === tabIndexStr);
+    });
+
+    const activeMega = panelContainer.querySelector(".header-v3-mega.is-active");
+
+    if (activeMega) {
+      panelContainer.style.height = `${activeMega.scrollHeight}px`;
+    }
+  };
+
+  const resetL2ToDefault = (megaPanel, panelContainer) => {
+    const split = megaPanel.querySelector("[data-v3-default-l2]");
+
+    if (!split || !split.dataset.v3DefaultL2) {
+      return;
+    }
+
+    activateL2Tab(megaPanel, panelContainer, split.dataset.v3DefaultL2);
+  };
+
   const initDesktopHover = () => {
     const menuRoots = Array.from(document.querySelectorAll("[data-v3-menu]"));
 
@@ -25,7 +73,23 @@
         panelContainer.style.height = `${heightValue}px`;
       };
 
+      const measureActiveMega = () => {
+        const activeMega = panelContainer.querySelector(".header-v3-mega.is-active");
+
+        if (!activeMega) {
+          return;
+        }
+
+        setPanelContainerHeight(activeMega.scrollHeight);
+      };
+
       const resetOpenState = () => {
+        const activeMega = panelContainer.querySelector(".header-v3-mega.is-active");
+
+        if (activeMega) {
+          resetL2ToDefault(activeMega, panelContainer);
+        }
+
         menuRoot.classList.remove("is-panel-open");
         activePanelId = "";
         setPanelContainerHeight(0);
@@ -58,7 +122,11 @@
           trigger.setAttribute("aria-expanded", trigger === nextTrigger ? "true" : "false");
         });
 
-        setPanelContainerHeight(nextPanel.scrollHeight);
+        syncPanelDock(menuRoot, panelContainer);
+
+        window.requestAnimationFrame(() => {
+          measureActiveMega();
+        });
       };
 
       const scheduleClose = () => {
@@ -126,6 +194,32 @@
         scheduleClose();
       });
 
+      panelContainer.addEventListener("mouseover", (event) => {
+        if (window.innerWidth < DESKTOP_BREAKPOINT) {
+          return;
+        }
+
+        const l2Link = event.target.closest("[data-v3-l2-tab]");
+
+        if (!l2Link || !panelContainer.contains(l2Link)) {
+          return;
+        }
+
+        const mega = l2Link.closest(".header-v3-mega");
+
+        if (!mega || !mega.classList.contains("is-active")) {
+          return;
+        }
+
+        const tabId = l2Link.dataset.v3L2Tab;
+
+        if (!tabId || l2Link.classList.contains("is-active")) {
+          return;
+        }
+
+        activateL2Tab(mega, panelContainer, tabId);
+      });
+
       if (overlay) {
         overlay.addEventListener("click", () => {
           resetOpenState();
@@ -142,7 +236,8 @@
           return;
         }
 
-        openPanelById(activePanelId);
+        syncPanelDock(menuRoot, panelContainer);
+        measureActiveMega();
       });
     });
   };
