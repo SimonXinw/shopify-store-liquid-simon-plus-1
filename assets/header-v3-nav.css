@@ -2,6 +2,22 @@
   background: var(--nav-v3-bg);
 }
 
+/* Dawn 默认在 section 内联样式里桌面隐藏 drawer；V3 section 无该样式，导致 header-drawer 无 grid-area 被排到第二行 */
+.header.header--v3 header-drawer {
+  grid-area: left-icons;
+  justify-self: start;
+}
+
+@media screen and (min-width: 990px) {
+  .header.header--v3:not(.drawer-menu) header-drawer {
+    display: none;
+  }
+
+  .header.header--v3.drawer-menu header-drawer {
+    grid-area: navigation;
+  }
+}
+
 .header-wrapper:has(.header-v3-menu.is-panel-open) {
   overflow: visible;
 }

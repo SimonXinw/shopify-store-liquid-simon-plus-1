@@ -44,56 +44,48 @@
       {%- if link.links != blank -%}
         <div id="MegaMenu-Content-{{ forloop.index }}" class="header-v3-mega" data-v3-panel="{{ forloop.index }}" tabindex="-1">
           <div class="header-v3-mega__inner">
-            {%- assign has_third_level = false -%}
+            {%- comment -%} 任意有二级：统一用「左二级 + 右内容」；无三级时右侧为单张大图卡（与有三级时视觉一致） {%- endcomment -%}
+            {%- assign default_l2_index = 1 -%}
             {%- for childlink in link.links -%}
-              {%- if childlink.links != blank -%}
-                {%- assign has_third_level = true -%}
+              {%- if childlink.active or childlink.child_active -%}
+                {%- assign default_l2_index = forloop.index -%}
                 {%- break -%}
               {%- endif -%}
             {%- endfor -%}
 
-            {%- if has_third_level -%}
-              {%- assign default_l2_index = 1 -%}
-              {%- for childlink in link.links -%}
-                {%- if childlink.active or childlink.child_active -%}
-                  {%- assign default_l2_index = forloop.index -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-
-              <div class="header-v3-mega__split page-width" data-v3-default-l2="{{ default_l2_index }}">
-                <div class="header-v3-mega__l2">
-                  <ul class="header-v3-mega__l2-list list-unstyled" role="list">
-                    {%- for childlink in link.links -%}
-                      <li>
-                        <a
-                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                          href="{{ childlink.url }}"
-                          class="header-v3-mega__l2-link{% if forloop.index == default_l2_index %} is-active{% endif %}"
-                          data-v3-l2-tab="{{ forloop.index }}"
-                          {% if childlink.current %}
-                            aria-current="page"
-                          {% endif %}
-                        >
-                          <span class="header-v3-mega__l2-label">{{ childlink.title | escape }}</span>
-                          <span class="header-v3-mega__l2-chevron" aria-hidden="true">
-                            {{- 'icon-caret.svg' | inline_asset_content -}}
-                          </span>
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-
-                <div class="header-v3-mega__l3">
+            <div class="header-v3-mega__split page-width" data-v3-default-l2="{{ default_l2_index }}">
+              <div class="header-v3-mega__l2">
+                <ul class="header-v3-mega__l2-list list-unstyled" role="list">
                   {%- for childlink in link.links -%}
-                    <div
-                      id="MegaMenu-L3-{{ link.handle }}-{{ forloop.index }}"
-                      class="header-v3-mega__l3-panel{% if forloop.index == default_l2_index %} is-active{% endif %}"
-                      data-v3-l2-panel="{{ forloop.index }}"
-                      role="region"
-                    >
-                      {%- if childlink.links != blank -%}
+                    <li>
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-l2-{{ forloop.index }}"
+                        href="{{ childlink.url }}"
+                        class="header-v3-mega__l2-link{% if forloop.index == default_l2_index %} is-active{% endif %}"
+                        data-v3-l2-tab="{{ forloop.index }}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        <span class="header-v3-mega__l2-label">{{ childlink.title | escape }}</span>
+                        <span class="header-v3-mega__l2-chevron" aria-hidden="true">
+                          {{- 'icon-caret.svg' | inline_asset_content -}}
+                        </span>
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+
+              <div class="header-v3-mega__l3">
+                {%- for childlink in link.links -%}
+                  <div
+                    id="MegaMenu-L3-{{ link.handle }}-{{ forloop.index }}"
+                    class="header-v3-mega__l3-panel{% if forloop.index == default_l2_index %} is-active{% endif %}"
+                    data-v3-l2-panel="{{ forloop.index }}"
+                    role="region"
+                  >
+                    {%- if childlink.links != blank -%}
                         {%- assign l3_hero_mode = false -%}
                         {%- for grandchildlink in childlink.links -%}
                           {%- if grandchildlink.type == 'product_link' and grandchildlink.object.featured_image != blank -%}
@@ -215,37 +207,88 @@
                             {%- endfor -%}
                           </ul>
                         {%- endif -%}
-                      {%- else -%}
-                        <div class="header-v3-mega__l3-fallback">
-                          <a href="{{ childlink.url }}" class="link header-v3-mega__l3-fallback-link">
-                            {{ childlink.title | escape }}
-                          </a>
-                        </div>
-                      {%- endif -%}
-                    </div>
-                  {%- endfor -%}
-                </div>
+                    {%- else -%}
+                      {%- assign leaf_custom_block = blank -%}
+                      {%- for block in section.blocks -%}
+                        {%- if block.type == 'custom_card' and block.settings.menu_title == childlink.title -%}
+                          {%- assign leaf_custom_block = block -%}
+                          {%- break -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                      <div class="header-v3-mega__hero-row">
+                        <a
+                          id="HeaderMenu-{{ link.handle }}-l2-{{ forloop.index }}-leaf"
+                          href="{{ childlink.url }}"
+                          class="header-v3-hero-card link"
+                          {% if childlink.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          <div class="header-v3-hero-card__media">
+                            {%- if childlink.type == 'product_link' and childlink.object.featured_image != blank -%}
+                              {{
+                                childlink.object.featured_image
+                                | image_url: width: 1200
+                                | image_tag:
+                                  loading: 'lazy',
+                                  widths: '400,600,800,1000,1200',
+                                  sizes: '(min-width: 990px) 38vw, 90vw',
+                                  class: 'header-v3-hero-card__image',
+                                  alt: childlink.title
+                              }}
+                            {%- elsif childlink.type == 'collection_link' and childlink.object.featured_image != blank -%}
+                              {{
+                                childlink.object.featured_image
+                                | image_url: width: 1200
+                                | image_tag:
+                                  loading: 'lazy',
+                                  widths: '400,600,800,1000,1200',
+                                  sizes: '(min-width: 990px) 38vw, 90vw',
+                                  class: 'header-v3-hero-card__image',
+                                  alt: childlink.title
+                              }}
+                            {%- elsif childlink.type == 'page_link' and childlink.object.metafields.custom.page_image != blank -%}
+                              {{
+                                childlink.object.metafields.custom.page_image
+                                | image_url: width: 1200
+                                | image_tag:
+                                  loading: 'lazy',
+                                  widths: '400,600,800,1000,1200',
+                                  sizes: '(min-width: 990px) 38vw, 90vw',
+                                  class: 'header-v3-hero-card__image',
+                                  alt: childlink.title
+                              }}
+                            {%- elsif leaf_custom_block != blank and leaf_custom_block.settings.image != blank -%}
+                              {{
+                                leaf_custom_block.settings.image
+                                | image_url: width: 1200
+                                | image_tag:
+                                  loading: 'lazy',
+                                  widths: '400,600,800,1000,1200',
+                                  sizes: '(min-width: 990px) 38vw, 90vw',
+                                  class: 'header-v3-hero-card__image',
+                                  alt: childlink.title
+                              }}
+                            {%- else -%}
+                              {% comment %} 无图占位：可整段删除 {% endcomment %}
+                              <div class="header-v3-hero-card__placeholder" aria-hidden="true"></div>
+                            {%- endif -%}
+                          </div>
+                          <div class="header-v3-hero-card__copy">
+                            <p class="header-v3-hero-card__title">{{ childlink.title | escape }}</p>
+                            {%- if childlink.type == 'product_link' and childlink.object.metafields.custom.product_subtitle != blank -%}
+                              <p class="header-v3-hero-card__subtitle">{{ childlink.object.metafields.custom.product_subtitle | escape }}</p>
+                            {%- elsif leaf_custom_block != blank and leaf_custom_block.settings.subtitle != blank -%}
+                              <p class="header-v3-hero-card__subtitle">{{ leaf_custom_block.settings.subtitle | escape }}</p>
+                            {%- endif -%}
+                          </div>
+                        </a>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
               </div>
-            {%- else -%}
-              <div class="header-v3-mega__inner page-width">
-                <ul class="header-v3-mega__flat-links list-unstyled" role="list">
-                  {%- for childlink in link.links -%}
-                    <li>
-                      <a
-                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="header-v3-mega__flat-link link{% if childlink.current %} header-v3-mega__flat-link--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
-                      >
-                        {{ childlink.title | escape }}
-                      </a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              </div>
-            {%- endif -%}
+            </div>
           </div>
         </div>
       {%- endif -%}
